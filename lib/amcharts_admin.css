@@ -1,0 +1,23 @@
+.amcharts-working {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background: transparent url(../images/working.gif) no-repeat;
+}
+
+.amcharts-error {
+  color: #c00;
+}
+
+#amcharts-resource-list {
+  max-height: 300px;
+  border: 1px solid #eee;
+  background: #fff;
+  padding: 10px;
+  font-size: 10px;
+  overflow: auto;
+}
+
+#amcharts-path, #amcharts-custom-resources, #amcharts-resources {
+  height: 100px;
+}
