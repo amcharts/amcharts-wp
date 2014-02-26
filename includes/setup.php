@@ -170,3 +170,37 @@ function amcharts_wp_footer () {
     <?php
   }
 }
+
+/**
+ * (Pseudo) Activation/deactivation hooks (workaround for Multisite)
+ */
+
+register_activation_hook( AMCHARTS_BASE, 'amcharts_activate' );
+register_deactivation_hook( AMCHARTS_BASE, 'amcharts_deactivate' );
+register_uninstall_hook( AMCHARTS_BASE, 'amcharts_deactivate' );
+
+add_action( 'admin_init', 'amcharts_check_activation' );
+function amcharts_check_activation () {
+  if ( ! get_option( 'amcharts_activated' ) ) {
+		amcharts_activate();
+  }
+}
+
+function amcharts_activate () {
+  // security checks
+  if ( ! current_user_can( 'activate_plugins' ) )
+    return;
+  
+	// set defaults
+	$settings = amcharts_get_defaults();
+	$settings['resources'] = amcharts_get_available_resources();
+	
+	// update options
+	update_option( 'amcharts_options', $settings );
+  update_option( 'amcharts_activated', true );
+}
+
+function amcharts_deactivate () {
+	// TODO: do this on all sites on Multisite install
+  delete_option( 'amcharts_activated' );
+}

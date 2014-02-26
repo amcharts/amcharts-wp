@@ -14,7 +14,7 @@ function amcharts_admin_menu() {
 
 function amcharts_get_defaults () {
 	return array(
-		'location'						=> 'local',
+		'location'						=> 'remote',
 		'paths'								=> '',
 		'resources' 					=> '',
 		'custom_resources'		=> '',
