@@ -9,7 +9,7 @@
   color: #c00;
 }
 
-#amcharts-resource-list {
+.amcharts-resource-list {
   max-height: 300px;
   border: 1px solid #eee;
   background: #fff;
@@ -18,6 +18,29 @@
   overflow: auto;
 }
 
-#amcharts-path, #amcharts-custom-resources, #amcharts-resources {
+.amcharts-resource-list p {
+  font-size: 10px;
+}
+
+#amcharts-path, #amcharts-custom-resources, .amcharts-resources {
   height: 100px;
+}
+
+.amcharts-tab h4 {
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.amcharts-notice {
+  color: #cc0000;
+  font-style: italic;
+}
+
+.amcharts-resource-list .amcharts-notice {
+  font-size: 10px;
+}
+
+#amcharts-chart-type-default, #amcharts-apply-default {
+  vertical-align: top;
+  margin: 0;
 }

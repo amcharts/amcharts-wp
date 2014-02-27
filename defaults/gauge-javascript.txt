@@ -1,0 +1,33 @@
+var %CHART% = AmCharts.makeChart("%CHART%", {
+    "theme": "none",
+    "type": "gauge",
+    "axes": [{
+        "axisColor": "#67b7dc",
+        "axisThickness": 3,
+        "endValue": 240,
+        "gridInside": false,
+        "inside": false,
+        "radius": "100%",
+        "tickColor": "#67b7dc"
+    }, {
+        "axisColor": "#fdd400",
+        "axisThickness": 3,
+        "endValue": 160,
+        "radius": "80%",
+        "tickColor": "#fdd400"  
+    }],
+    "arrows": [{
+        "color": "#67b7dc",
+        "innerRadius": "20%",
+        "nailRadius": 0,
+        "radius": "85%"
+    }]
+});
+
+setInterval(randomValue, 2000);
+
+// set random value
+function randomValue() {
+    var value = Math.round(Math.random() * 240);
+    gaugeChart.arrows[0].setValue(value);
+}

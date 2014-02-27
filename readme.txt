@@ -47,13 +47,22 @@ No. This plugin allows editing a code directly in Wordpress admin as well as ins
 
 It's not a fully fledged chart/map editor. It's a plugin designed to get your chart/map code into Wordpress easily.
 
+= Do I need to include any JavaScript libraries in my theme code? =
+
+Nope. The plugin will take care of that for you. The required JavaScript libraries will be included in the footer of the page automatically.
+
+Plugin will include only those libraries that are actually required to render the chart. If no charts are there on the page, no additional libraries will be included.
+
+Let's keep the footprint small ;)
+
 == Screenshots ==
 
-1. This screen shot description corresponds to screenshot-1.(png|jpg|jpeg|gif). Note that the screenshot is taken from
-the /assets directory or the directory that contains the stable readme.txt (tags or trunk). Screenshots in the /assets 
-directory take precedence. For example, `/assets/screenshot-1.png` would win over `/tags/4.3/screenshot-1.png` 
-(or jpg, jpeg, gif).
-2. This is the second screen shot
+1. Plugin configuration. Either use amCharts-hosted free libraries or your own. Set default code per chart/map type.
+2. Easily create new charts or maps using presets right from the Admin menu.
+3. Modify resources, HTML or JavaScript portion of the chart. Or apply defaults right from the edit screen.
+4. Insert chart easily into body of the post or page using button from the rich editor tool belt. The charts are inserted as Wordpress shortcodes.
+5. Select from the available charts or maps. No coding required.
+6. The chart shortcodes are replaced with the actual charts when page renders.
 
 == Changelog ==
 
