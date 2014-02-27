@@ -55,6 +55,24 @@ Plugin will include only those libraries that are actually required to render th
 
 Let's keep the footprint small ;)
 
+= Can I insert a chart directly from my PHP code rather than shortcode? =
+
+Yes. Use the following PHP code:
+
+`<?php amcharts_insert( $chart_id ); ?>`
+
+Or, you can retrieve the chart object using following function:
+
+`<?php amcharts_get( $chart_id ); ?>`
+
+This will return an object with the following properties:
+
+*   title - a chart title
+*   post - a reference to original WP post object
+*   resources - a list of resource urls
+*   html - HTML code
+*   javascript - JavaScript code
+
 == Screenshots ==
 
 1. Plugin configuration. Either use amCharts-hosted free libraries or your own. Set default code per chart/map type.
