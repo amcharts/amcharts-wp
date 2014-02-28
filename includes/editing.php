@@ -29,7 +29,7 @@ function amcharts_meta_boxes () {
 	
 	add_meta_box(
     'amcharts_defaults_box',
-    __( 'Defaults', 'amcharts' ),
+    __( 'Apply default code', 'amcharts' ),
     'amcharts_defaults_box',
     'amchart'
   );
@@ -156,11 +156,11 @@ function amcharts_defaults_box ( $post ) {
 			<option value="<?php echo $chart_type; ?>"><?php echo $chart_type_name; ?></option>
 			<?php } ?>
 		</select>
-		<input type="button" class="button" id="amcharts-apply-default" value="<?php echo esc_attr( __( 'Apply Defaults', 'amcharts' ) ); ?>" disabled="disabled" />
+		<input type="button" class="button" id="amcharts-apply-default" value="<?php echo esc_attr( __( 'Apply', 'amcharts' ) ); ?>" disabled="disabled" />
 	</p>
 	
 	<p class="description">
-		<?php _e( 'ATTENTION! When you select a chart type above and click "Apply Defaults", the content in Resources, HTML and JavaScript fields will be overwritten with the defaults set by the website administrator.', 'amcharts' ); ?>
+		<?php _e( 'ATTENTION! When you select a chart type above and click "Apply", the content in Resources, HTML and JavaScript fields will be overwritten with the defaults set by the website administrator.', 'amcharts' ); ?>
 	</p>
 	
 	<script>
