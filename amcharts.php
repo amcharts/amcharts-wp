@@ -1,7 +1,7 @@
 <?php
 /**
  * @package amcharts
- * @version 1.0
+ * @version 1.0.1
  */
 /*
 Plugin Name: amCharts: Charts and Maps
@@ -28,7 +28,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
 // defaults
-define( 'AMCHARTS_VERSION', '1.0' );
+define( 'AMCHARTS_VERSION', '1.0.1' );
 define( 'AMCHARTS_BASE', __FILE__ );
 define( 'AMCHARTS_DIR', plugin_dir_path( __FILE__ ) );
 define( 'AMCHARTS_BASE_URL', plugins_url( '', __FILE__ ) );

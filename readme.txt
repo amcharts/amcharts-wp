@@ -84,7 +84,7 @@ This will return an object with the following properties:
 
 == Changelog ==
 
-= 1.01 =
+= 1.0.1 =
 * Shortcode column was showing for all post types
 
 = 1.0 =
