@@ -16,7 +16,7 @@ the JavaScript.
 
 This makes adding JavaScript Charts and Maps a hassle.
 
-This plugin solves the problem by allowing you to create chart code snippets, that then subsequently can be inserted into the
+Developed and maintained by amCharts staff, this plugin solves the problem by allowing you to create chart code snippets, that then subsequently can be inserted into the
 posts or pages as a shortcode. (helpful button in TinyMCE is also there)
 
 You can also use a built-in PHP function to invoke the chart anywhere in your template:
@@ -83,6 +83,9 @@ This will return an object with the following properties:
 6. The chart shortcodes are replaced with the actual charts when page renders.
 
 == Changelog ==
+
+= 1.01 =
+* Shortcode column was showing for all post types
 
 = 1.0 =
 * Initial release

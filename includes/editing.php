@@ -202,7 +202,9 @@ function amcharts_save_post ( $post_id ) {
 
 add_filter( 'manage_posts_columns', 'amcharts_manage_posts_columns', 100, 2 );
 function amcharts_manage_posts_columns ( $posts_columns, $post_type = 'post' ) {
-  $posts_columns['amcharts_shortcode'] = __( 'Shortcode', 'amcharts' );
+	if ( 'amchart' == $post_type )
+		$posts_columns['amcharts_shortcode'] = __( 'Shortcode', 'amcharts' );
+	
   return $posts_columns;
 }
 
