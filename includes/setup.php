@@ -113,7 +113,7 @@ function amcharts_shortcode ( $atts ) {
   // enqueue resources
   $libs = preg_split( '/\R/', $resources );
   foreach ( $libs as $lib ) {
-    wp_enqueue_script( 'amcharts-external-' . md5( $lib ), $lib, array(), AMCHARTS_VERSION, true );
+    wp_enqueue_script( 'amcharts-external-' . md5( basename( $lib ) ), $lib, array(), AMCHARTS_VERSION, true );
   }
   
   // enqueue JavaScript part
