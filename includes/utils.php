@@ -41,3 +41,44 @@ function amcharts_get_chart_type_libs () {
 		'map' 		=> array( 'ammap.js', 'worldLow.js' )
 	);
 }
+
+/**
+ * Strips slashes from submitted data
+ */
+
+function amcharts_stripslashes ( $str ) {
+	// if ( get_magic_quotes_gpc() )
+	// WP seems to add slashes regardless of the above setting
+	$str = stripslashes( $str );
+	return $str;
+}
+
+/**
+ * Returns unique chart slug
+ */
+
+function amcharts_generate_slug ( $type = 'chart' ) {
+	if ( ! $type )
+		$type = 'chart';
+	
+	$continue = true;
+	$i = 0;
+	do {
+		$i++;
+		$slug = $type . '-' . $i;
+		if ( ! get_posts( array(
+			'post_type' 			=> 'amchart',
+			'fields'					=> 'ids',
+			'posts_per_page'	=> 1,
+			'meta_query' 			=> array(
+				array(
+					'key' 	=> '_amcharts_slug',
+					'value' => $slug,
+				)
+			)
+		) ) )
+			$continue = false;
+	} while ( $contine );
+	
+	return $slug;
+}

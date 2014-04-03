@@ -44,3 +44,20 @@
   vertical-align: top;
   margin: 0;
 }
+
+#amcharts_misc_box .inside {
+  margin: 0;
+  padding: 0;
+}
+#amcharts_misc_box label {
+  display: inline-block;
+  margin-bottom: 4px;
+}
+
+.amcharts-edit-section {
+  border-top: 1px solid #ddd;
+}
+
+.amcharts-center {
+  text-align: center;
+}

@@ -42,8 +42,11 @@ wp_admin_css( 'wp-admin', true );
     'post_type' => 'amchart'
   ) );
   foreach( $charts as $chart ) {
+		$id = $chart->ID;
+		if ( $slug = get_post_meta( $chart->ID, '_amcharts_slug', true ) )
+			$id = $slug;
     ?>
-    <li class="chart" id="<?php echo $chart->ID; ?>"><?php echo $chart->post_title; ?></li>
+    <li class="chart" id="<?php echo $id; ?>"><?php echo $chart->post_title; ?></li>
     <?php
   }
   ?>

@@ -33,6 +33,14 @@ function amcharts_meta_boxes () {
     'amcharts_defaults_box',
     'amchart'
   );
+	
+	add_meta_box(
+    'amcharts_misc_box',
+    __( 'Chart tools', 'amcharts' ),
+    'amcharts_misc_box',
+    'amchart',
+		'side'
+  );
 }
 
 /**
@@ -171,6 +179,39 @@ function amcharts_defaults_box ( $post ) {
 }
 
 /**
+ * HTML meta box
+ */
+
+function amcharts_misc_box ( $post ) {
+  // nonce field
+  wp_nonce_field( AMCHARTS_NONCE, 'amcharts_nonce' );
+  
+	// new?
+	if ( amcharts_is_new_post() ) {
+		$slug = amcharts_generate_slug( $_GET['chart_type'] );
+	}
+	else {
+		$slug = get_post_meta( $post->ID, '_amcharts_slug', true );
+		if ( '' == $slug )
+			$slug = amcharts_generate_slug();
+	}
+  ?>
+	<div class="misc-pub-section">
+		<strong><label for="amcharts-slug"><?php _e( 'Slug', 'amcharts' ); ?></label></strong><br />
+		<input name="slug" type="text" class="widefat" id="amcharts-slug" value="<?php echo esc_attr( $slug ); ?>" />
+		<p class="description"><?php _e( 'Use this field to enter a user-friendly slug (ID) for your chart that can be used in shortcodes, i.e. [amcharts id="chart-1"]', 'amcharts' ); ?></p>
+	</div>
+	<div class="misc-pub-section amcharts-center amcharts-edit-section">
+		<a class="button" id="amcharts-preview"><?php _e( 'Preview chart or map', 'amcharts' ); ?></a>
+	</div>
+	<script>
+		var amcharts_preview_url = '<?php echo esc_js( home_url( '?amcharts_preview=1' ) ); ?>';
+	</script>
+  
+  <?php
+}
+
+/**
  * Save custom fields
  */
 
@@ -194,6 +235,7 @@ function amcharts_save_post ( $post_id ) {
 	update_post_meta( $post_id, '_amcharts_resources', trim( $_POST['resources'] ) );
 	update_post_meta( $post_id, '_amcharts_html', trim( $_POST['html'] ) );
 	update_post_meta( $post_id, '_amcharts_javascript', trim( $_POST['javascript'] ) );
+	update_post_meta( $post_id, '_amcharts_slug', trim( $_POST['slug'] ) );
 }
 
 /**
@@ -211,6 +253,8 @@ function amcharts_manage_posts_columns ( $posts_columns, $post_type = 'post' ) {
 add_filter( 'manage_posts_custom_column', 'amcharts_manage_posts_custom_column', 100, 2 );
 function amcharts_manage_posts_custom_column ( $column_name, $post_id ) {
   if ( 'amcharts_shortcode' == $column_name ) {
+		if ( $slug = get_post_meta( $post_id, '_amcharts_slug', true ) )
+			$post_id = $slug;
     echo '[amcharts id="' . $post_id . '"]';
   }
 }

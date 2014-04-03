@@ -99,7 +99,21 @@ function amcharts_shortcode ( $atts ) {
     'id' => ''
   ), $atts ) );
   
-  if ( !$chart = get_post( $id ) )
+	// try loading by slug first
+	if ( $chart = get_posts( array(
+			'post_type' 			=> 'amchart',
+			'fields'					=> 'ids',
+			'posts_per_page'	=> 1,
+			'meta_query' 			=> array(
+				array(
+					'key' 	=> '_amcharts_slug',
+					'value' => $id,
+				)
+			)
+		) ) ) {
+		$id = $chart[0];
+	}
+	else if ( !$chart = get_post( $id ) )
     return '';
   
   // increment instance
@@ -204,6 +218,19 @@ function amcharts_wp_footer () {
     </script>
     <?php
   }
+}
+
+/**
+ * Redirect to our specific template for chart previews
+ */
+
+add_filter( 'template_include', 'amcharts_preview_template', 99 );
+function amcharts_preview_template( $template ) {
+	
+	if ( isset( $_GET['amcharts_preview'] ) )
+		$template = AMCHARTS_DIR . '/includes/preview.php';
+
+	return $template;
 }
 
 /**

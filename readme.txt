@@ -3,7 +3,7 @@ Contributors: martynasma
 Tags: charts, maps, amcharts, ammap, javascript charts, javascript maps
 Requires at least: 3.0
 Tested up to: 3.8.1
-Stable tag: trunk
+Stable tag: 1.0.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -83,6 +83,11 @@ This will return an object with the following properties:
 6. The chart shortcodes are replaced with the actual charts when page renders.
 
 == Changelog ==
+
+= 1.0.2 =
+* Added a way to preview the chart while editing it
+* Added ability to enter a user-friendly slug/ID for the chart to be used in shortcodes
+* Fixed potential conflicts of the same libraries included from different locations on the same page
 
 = 1.0.1 =
 * Shortcode column was showing for all post types
