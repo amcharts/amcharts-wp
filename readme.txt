@@ -3,7 +3,7 @@ Contributors: martynasma
 Tags: charts, maps, amcharts, ammap, javascript charts, javascript maps
 Requires at least: 3.0
 Tested up to: 3.8.1
-Stable tag: 1.0.2
+Stable tag: 1.0.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -80,9 +80,15 @@ This will return an object with the following properties:
 3. Modify resources, HTML or JavaScript portion of the chart. Or apply defaults right from the edit screen.
 4. Insert chart easily into body of the post or page using button from the rich editor tool belt. The charts are inserted as Wordpress shortcodes.
 5. Select from the available charts or maps. No coding required.
-6. The chart shortcodes are replaced with the actual charts when page renders.
+6. Embed a chart created in Live Editor directly into your posts or pages.
+7. The chart shortcodes are replaced with the actual charts when page renders.
 
 == Changelog ==
+
+= 1.0.3 =
+* Chart insert window now shows recent chart first with ability to live-search all available charts
+* Chart shortcodes will now be inserted using user-friendly slug instead of id
+* Added ability to insert and embed charts created with Live Editor
 
 = 1.0.2 =
 * Added a way to preview the chart while editing it
