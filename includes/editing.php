@@ -316,7 +316,7 @@ function amcharts_get_posts() {
 		?><h2><?php _e( 'Search results', 'amcharts' ); ?></h2><?php
 	}
 	else {
-		?><h2><?php _e( 'Recent posts', 'amcharts' ); ?></h2><?php
+		?><h2><?php _e( 'Recent charts', 'amcharts' ); ?></h2><?php
 	}
 	?><ul id="results"><?php
 	$posts = get_posts( $query );

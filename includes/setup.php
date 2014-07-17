@@ -266,3 +266,9 @@ function amcharts_deactivate () {
 	// TODO: do this on all sites on Multisite install
   delete_option( 'amcharts_activated' );
 }
+
+/**
+ * Adding support for oEmbed Live Editor
+ */
+
+wp_oembed_add_provider( 'http://live.amcharts.com/*', 'http://live.amcharts.com/oembed/' );
