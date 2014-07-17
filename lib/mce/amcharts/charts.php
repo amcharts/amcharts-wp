@@ -15,20 +15,20 @@ header('Content-Type: text/html; charset=' . get_bloginfo('charset'));
 wp_admin_css( 'wp-admin', true );
 ?>
 <style type="text/css">
-	body {
-		min-width: 0;
+  body {
+    min-width: 0;
     min-height: 0;
     height: auto;
     padding: 10px;
-	}
+  }
   
-  .chart {
+  .post {
     font-weight: bold;
     cursor: pointer;
     padding: 3px 6px;
   }
   
-  .chart:hover {
+  .post:hover {
     background-color: #eee;
   }
 
@@ -36,28 +36,30 @@ wp_admin_css( 'wp-admin', true );
 <script type="text/javascript" src="jquery-1.10.2.min.js"></script>
 </head>
 <body>
-  <ul>
-  <?php
-  $charts = get_posts( array(
-    'post_type' => 'amchart'
-  ) );
-  foreach( $charts as $chart ) {
-		$id = $chart->ID;
-		if ( $slug = get_post_meta( $chart->ID, '_amcharts_slug', true ) )
-			$id = $slug;
-    ?>
-    <li class="chart" id="<?php echo $id; ?>"><?php echo $chart->post_title; ?></li>
-    <?php
-  }
-  ?>
-  </ul>
+  <input type="text" value="" id="post-search" placeholder="<?php _e( 'Start typing to search', 'amcharts' ); ?>" class="widefat" />
+  <div id="results"></div>
   <script>
+  var ajaxurl = '<?php echo admin_url('admin-ajax.php'); ?>';
   jQuery( function( $ ) {
-    $( '.chart' ).click( function () {
+    amchartsUpdateSearchResults();
+    $( '#results').on( 'click', '.post', function () {
       window.parent.tinyMCE.activeEditor.execCommand( 'mceInsertContent', false, '[amcharts id="' + this.id + '"]' );
       parent.tinyMCE.activeEditor.windowManager.close( window );
     } );
+    $( '#post-search' ).on('keyup change', function () {
+      amchartsUpdateSearchResults();
+    });
   } );
+  function amchartsUpdateSearchResults () {
+    var query = jQuery( '#post-search' ).val();
+    var data = {
+      'action': 'amcharts_get_posts',
+      'query': query
+    };
+    jQuery.post(ajaxurl, data, function(response) {
+      jQuery('#results').html(response);
+    });
+  }
   </script>
 </body>
 </html>

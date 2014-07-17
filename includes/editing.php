@@ -6,41 +6,41 @@
 add_action( 'add_meta_boxes', 'amcharts_meta_boxes' );
 
 function amcharts_meta_boxes () {
-  add_meta_box(
-    'amcharts_resources_box',
-    __( 'Resources', 'amcharts' ),
-    'amcharts_resources_box',
-    'amchart'
-  );
+	add_meta_box(
+		'amcharts_resources_box',
+		__( 'Resources', 'amcharts' ),
+		'amcharts_resources_box',
+		'amchart'
+	);
 	
 	add_meta_box(
-    'amcharts_html_box',
-    __( 'HTML', 'amcharts' ),
-    'amcharts_html_box',
-    'amchart'
-  );
+		'amcharts_html_box',
+		__( 'HTML', 'amcharts' ),
+		'amcharts_html_box',
+		'amchart'
+	);
 	
 	add_meta_box(
-    'amcharts_javascript_box',
-    __( 'JavaScript', 'amcharts' ),
-    'amcharts_javascript_box',
-    'amchart'
-  );
+		'amcharts_javascript_box',
+		__( 'JavaScript', 'amcharts' ),
+		'amcharts_javascript_box',
+		'amchart'
+	);
 	
 	add_meta_box(
-    'amcharts_defaults_box',
-    __( 'Apply default code', 'amcharts' ),
-    'amcharts_defaults_box',
-    'amchart'
-  );
+		'amcharts_defaults_box',
+		__( 'Apply default code', 'amcharts' ),
+		'amcharts_defaults_box',
+		'amchart'
+	);
 	
 	add_meta_box(
-    'amcharts_misc_box',
-    __( 'Chart tools', 'amcharts' ),
-    'amcharts_misc_box',
-    'amchart',
+		'amcharts_misc_box',
+		__( 'Chart tools', 'amcharts' ),
+		'amcharts_misc_box',
+		'amchart',
 		'side'
-  );
+	);
 }
 
 /**
@@ -48,11 +48,11 @@ function amcharts_meta_boxes () {
  */
 
 function amcharts_resources_box ( $post ) {
-  // nonce field
-  wp_nonce_field( AMCHARTS_NONCE, 'amcharts_nonce' );
-  
-  // get post data
-  $post_resources = get_post_meta( $post->ID, '_amcharts_resources', true );
+	// nonce field
+	wp_nonce_field( AMCHARTS_NONCE, 'amcharts_nonce' );
+	
+	// get post data
+	$post_resources = get_post_meta( $post->ID, '_amcharts_resources', true );
 	
 	// get available resources
 	$settings = get_option( 'amcharts_options', amcharts_get_defaults() );
@@ -65,7 +65,7 @@ function amcharts_resources_box ( $post ) {
 	if ( amcharts_is_new_post() && $_GET['chart_type'] ) {
 		$post_resources = $settings['chart_types'][$_GET['chart_type']]['default_resources'];
 	}
-  ?>
+	?>
 
 	<fieldset class="amcharts-resource-group">	
 		<p>
@@ -82,7 +82,7 @@ function amcharts_resources_box ( $post ) {
 		</select>
 		<input type="button" class="button amcharts-add-resource" value="<?php _e( 'Add', 'amcharts' ) ; ?>" />
 	</fieldset>
-  <?php
+	<?php
 }
 
 /**
@@ -90,11 +90,11 @@ function amcharts_resources_box ( $post ) {
  */
 
 function amcharts_html_box ( $post ) {
-  // nonce field
-  wp_nonce_field( AMCHARTS_NONCE, 'amcharts_nonce' );
-  
-  // get post data
-  $html = get_post_meta ( $post->ID, '_amcharts_html', true );
+	// nonce field
+	wp_nonce_field( AMCHARTS_NONCE, 'amcharts_nonce' );
+	
+	// get post data
+	$html = get_post_meta ( $post->ID, '_amcharts_html', true );
 	
 	// get settings
 	$settings = get_option( 'amcharts_options', amcharts_get_defaults() );
@@ -103,7 +103,7 @@ function amcharts_html_box ( $post ) {
 	if ( amcharts_is_new_post() && $_GET['chart_type'] ) {
 		$html = $settings['chart_types'][$_GET['chart_type']]['default_html'];
 	}
-  ?>
+	?>
 	
 	<p>
 		<textarea name="html" class="widefat code code-html" id="amcharts-html"><?php echo esc_textarea( $html ); ?></textarea>
@@ -112,8 +112,8 @@ function amcharts_html_box ( $post ) {
 	<p class="description">
 		<?php _e( 'Please use the following code <strong>%CHART%</strong> in place of the chart IDs or variables. It will be replaced with the proper, safe and unique chart ID when generating the page', 'amcharts' ); ?>
 	</p>
-  
-  <?php
+	
+	<?php
 }
 
 /**
@@ -121,11 +121,11 @@ function amcharts_html_box ( $post ) {
  */
 
 function amcharts_javascript_box ( $post ) {
-  // nonce field
-  wp_nonce_field( AMCHARTS_NONCE, 'amcharts_nonce' );
-  
-  // get post data
-  $javascript = get_post_meta ( $post->ID, '_amcharts_javascript', true );
+	// nonce field
+	wp_nonce_field( AMCHARTS_NONCE, 'amcharts_nonce' );
+	
+	// get post data
+	$javascript = get_post_meta ( $post->ID, '_amcharts_javascript', true );
 	
 	// get available resources
 	$settings = get_option( 'amcharts_options', amcharts_get_defaults() );
@@ -134,7 +134,7 @@ function amcharts_javascript_box ( $post ) {
 	if ( amcharts_is_new_post() && $_GET['chart_type'] ) {
 		$javascript = $settings['chart_types'][$_GET['chart_type']]['default_javascript'];
 	}
-  ?>
+	?>
 	
 	<p>
 		<textarea name="javascript" class="widefat code code-javascript" id="amcharts-javascript"><?php echo esc_textarea( $javascript ); ?></textarea>
@@ -143,8 +143,8 @@ function amcharts_javascript_box ( $post ) {
 	<p class="description">
 		<?php _e( 'Please use the following code <strong>%CHART%</strong> in place of the chart IDs or variables. It will be replaced with the proper, safe and unique chart ID when generating the page', 'amcharts' ); ?>
 	</p>
-  
-  <?php
+	
+	<?php
 }
 
 /**
@@ -155,7 +155,7 @@ function amcharts_defaults_box ( $post ) {
 	// get available resources and chart types
 	$settings = get_option( 'amcharts_options', amcharts_get_defaults() );
 	$chart_types = amcharts_get_chart_types();
-  ?>
+	?>
 	
 	<p>
 		<select id="amcharts-chart-type-default">
@@ -175,7 +175,7 @@ function amcharts_defaults_box ( $post ) {
 		var amcharts_settings = <?php echo json_encode( $settings['chart_types'] ); ?>;
 	</script>
 	
-  <?php
+	<?php
 }
 
 /**
@@ -183,9 +183,9 @@ function amcharts_defaults_box ( $post ) {
  */
 
 function amcharts_misc_box ( $post ) {
-  // nonce field
-  wp_nonce_field( AMCHARTS_NONCE, 'amcharts_nonce' );
-  
+	// nonce field
+	wp_nonce_field( AMCHARTS_NONCE, 'amcharts_nonce' );
+	
 	// new?
 	if ( amcharts_is_new_post() ) {
 		$slug = amcharts_generate_slug( $_GET['chart_type'] );
@@ -195,7 +195,7 @@ function amcharts_misc_box ( $post ) {
 		if ( '' == $slug )
 			$slug = amcharts_generate_slug();
 	}
-  ?>
+	?>
 	<div class="misc-pub-section">
 		<strong><label for="amcharts-slug"><?php _e( 'Slug', 'amcharts' ); ?></label></strong><br />
 		<input name="slug" type="text" class="widefat" id="amcharts-slug" value="<?php echo esc_attr( $slug ); ?>" />
@@ -207,8 +207,8 @@ function amcharts_misc_box ( $post ) {
 	<script>
 		var amcharts_preview_url = '<?php echo esc_js( home_url( '?amcharts_preview=1' ) ); ?>';
 	</script>
-  
-  <?php
+	
+	<?php
 }
 
 /**
@@ -217,21 +217,21 @@ function amcharts_misc_box ( $post ) {
 
 add_action( 'save_post', 'amcharts_save_post', 70 );
 function amcharts_save_post ( $post_id ) {
-  // checks
+	// checks
 	if ( !in_array( $_POST['post_type'], array( 'amchart' ) ) ) return;
-  if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) return;
-  if ( !wp_verify_nonce( $_POST['amcharts_nonce'], AMCHARTS_NONCE ) ) return;
-  if ( !current_user_can( 'edit_page', $post_id ) && !current_user_can( 'edit_post', $post_id ) ) return;
-  
-  // revision
-  if ( $tmp_post_id = wp_is_post_revision( $post_id ) ) {
-    // we need to do this because revision is saved BEFORE the actual post
-    // so the custom fields need to be saved at the point when the revision
-    // is saved so it's properly saved into revision data
-    $post_id = $tmp_post_id;
-  }
-  
-  // now let's save
+	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) return;
+	if ( !wp_verify_nonce( $_POST['amcharts_nonce'], AMCHARTS_NONCE ) ) return;
+	if ( !current_user_can( 'edit_page', $post_id ) && !current_user_can( 'edit_post', $post_id ) ) return;
+	
+	// revision
+	if ( $tmp_post_id = wp_is_post_revision( $post_id ) ) {
+		// we need to do this because revision is saved BEFORE the actual post
+		// so the custom fields need to be saved at the point when the revision
+		// is saved so it's properly saved into revision data
+		$post_id = $tmp_post_id;
+	}
+	
+	// now let's save
 	update_post_meta( $post_id, '_amcharts_resources', trim( $_POST['resources'] ) );
 	update_post_meta( $post_id, '_amcharts_html', trim( $_POST['html'] ) );
 	update_post_meta( $post_id, '_amcharts_javascript', trim( $_POST['javascript'] ) );
@@ -247,16 +247,16 @@ function amcharts_manage_posts_columns ( $posts_columns, $post_type = 'post' ) {
 	if ( 'amchart' == $post_type )
 		$posts_columns['amcharts_shortcode'] = __( 'Shortcode', 'amcharts' );
 	
-  return $posts_columns;
+	return $posts_columns;
 }
 
 add_filter( 'manage_posts_custom_column', 'amcharts_manage_posts_custom_column', 100, 2 );
 function amcharts_manage_posts_custom_column ( $column_name, $post_id ) {
-  if ( 'amcharts_shortcode' == $column_name ) {
+	if ( 'amcharts_shortcode' == $column_name ) {
 		if ( $slug = get_post_meta( $post_id, '_amcharts_slug', true ) )
 			$post_id = $slug;
-    echo '[amcharts id="' . $post_id . '"]';
-  }
+		echo '[amcharts id="' . $post_id . '"]';
+	}
 }
 
 /**
@@ -266,20 +266,20 @@ function amcharts_manage_posts_custom_column ( $column_name, $post_id ) {
 add_action( 'init', 'amcharts_add_mce_plugins' );
 
 function amcharts_add_mce_plugins() {
-  if ( ( current_user_can( 'edit_posts' ) || current_user_can( 'edit_pages' ) ) && get_user_option( 'rich_editing' ) ) {
+	if ( ( current_user_can( 'edit_posts' ) || current_user_can( 'edit_pages' ) ) && get_user_option( 'rich_editing' ) ) {
 		add_filter( 'mce_external_plugins', 'amcharts_tinymce_plugin' );
 		add_filter( 'mce_buttons', 'amcharts_register_myplugin_button' );
-  }
+	}
 }
  
 function amcharts_register_myplugin_button( $buttons ) {
-  array_push( $buttons, 'separator', 'amcharts' );
-  return $buttons;
+	array_push( $buttons, 'separator', 'amcharts' );
+	return $buttons;
 }
  
 function amcharts_tinymce_plugin( $plugin_array ) {
-  $plugin_array['amcharts'] = AMCHARTS_BASE_URL . '/lib/mce/amcharts/editor_plugin.js';
-  return $plugin_array;
+	$plugin_array['amcharts'] = AMCHARTS_BASE_URL . '/lib/mce/amcharts/editor_plugin.js';
+	return $plugin_array;
 }
 
 /**
@@ -299,4 +299,32 @@ function amcharts_admin_head () {
 		var amcharts_chart_types = <?php echo json_encode( amcharts_get_chart_types() ); ?>
 	</script>
 	<?php
+}
+
+/**
+ * AJAX handler for post search
+ */
+
+add_action( 'wp_ajax_amcharts_get_posts', 'amcharts_get_posts' );
+function amcharts_get_posts() {
+	$query = array(
+		'post_type'				=> 'amchart',
+		'posts_per_page'	=> 20
+	);
+	if ( '' != $_POST['query'] ) {
+		$query['s'] = $_POST['query'];
+		?><h2><?php _e( 'Search results', 'amcharts' ); ?></h2><?php
+	}
+	else {
+		?><h2><?php _e( 'Recent posts', 'amcharts' ); ?></h2><?php
+	}
+	?><ul id="results"><?php
+	$posts = get_posts( $query );
+	foreach( $posts as $post ) {
+		$id = $post->ID; ?>
+		<li class="post" id="<?php echo $id; ?>"><?php echo $post->post_title; ?></li>
+		<?php
+	}
+	?></ul><?php
+	die();
 }
