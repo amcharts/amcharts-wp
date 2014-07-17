@@ -321,8 +321,10 @@ function amcharts_get_posts() {
 	?><ul id="results"><?php
 	$posts = get_posts( $query );
 	foreach( $posts as $post ) {
-		$id = $post->ID; ?>
-		<li class="post" id="<?php echo $id; ?>"><?php echo $post->post_title; ?></li>
+		$id = $post->ID;
+		$slug = get_post_meta( $id, '_amcharts_slug', true );
+		?>
+		<li class="post" id="<?php echo '' != $slug ? esc_attr( $slug ) : $id; ?>"><?php echo $post->post_title; ?></li>
 		<?php
 	}
 	?></ul><?php
