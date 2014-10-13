@@ -144,7 +144,9 @@ function amcharts_settings_show () {
         </td>
       </tr>
 
-      <tr valign="top">
+      <tr valign="top" id="amcharts-live-editor-group" <?php
+        echo 'remote' == $settings['location'] ? 'style="display: none;"' : '';
+      ?>>
         <th scope="row"><?php _e( 'Live Editor Integration', 'amcharts' ); ?></th>
         <td>
           <fieldset>
