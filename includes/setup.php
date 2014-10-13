@@ -61,9 +61,9 @@ function amcharts_plugins_loaded() {
  */
 
 function amcharts_insert ( $chart_id ) {
-	echo amcharts_shortcode( array(
-		'id' => $chart_id
-	) );
+  echo amcharts_shortcode( array(
+    'id' => $chart_id
+  ) );
 }
 
 /**
@@ -71,21 +71,21 @@ function amcharts_insert ( $chart_id ) {
  */
 
 function amcharts_get ( $chart_id ) {
-	$chart = new stdClass();
-	
-	if ( ! $chart_post = get_post( $chart_id ) )
+  $chart = new stdClass();
+  
+  if ( ! $chart_post = get_post( $chart_id ) )
     return false;
 
-	// increment instance
-  amcharts_increment_instance();	
+  // increment instance
+  amcharts_increment_instance();  
 
-	$chart->title = $chart_post->post_title;
-	$chart->post = &$chart_post;
-	$chart->resources = get_post_meta( $chart_id, '_amcharts_resources', true );
-	$chart->html = amcharts_parse_code( get_post_meta( $chart_id, '_amcharts_html', true ) );
-	$chart->javascript = amcharts_parse_code( get_post_meta( $chart_id, '_amcharts_javascript', true ) );
-	
-	return $chart;
+  $chart->title = $chart_post->post_title;
+  $chart->post = &$chart_post;
+  $chart->resources = get_post_meta( $chart_id, '_amcharts_resources', true );
+  $chart->html = amcharts_parse_code( get_post_meta( $chart_id, '_amcharts_html', true ) );
+  $chart->javascript = amcharts_parse_code( get_post_meta( $chart_id, '_amcharts_javascript', true ) );
+  
+  return $chart;
 }
 
 
@@ -99,21 +99,21 @@ function amcharts_shortcode ( $atts ) {
     'id' => ''
   ), $atts ) );
   
-	// try loading by slug first
-	if ( $chart = get_posts( array(
-			'post_type' 			=> 'amchart',
-			'fields'					=> 'ids',
-			'posts_per_page'	=> 1,
-			'meta_query' 			=> array(
-				array(
-					'key' 	=> '_amcharts_slug',
-					'value' => $id,
-				)
-			)
-		) ) ) {
-		$id = $chart[0];
-	}
-	else if ( !$chart = get_post( $id ) )
+  // try loading by slug first
+  if ( $chart = get_posts( array(
+      'post_type'       => 'amchart',
+      'fields'          => 'ids',
+      'posts_per_page'  => 1,
+      'meta_query'      => array(
+        array(
+          'key'   => '_amcharts_slug',
+          'value' => $id,
+        )
+      )
+    ) ) ) {
+    $id = $chart[0];
+  }
+  else if ( !$chart = get_post( $id ) )
     return '';
   
   // increment instance
@@ -121,8 +121,8 @@ function amcharts_shortcode ( $atts ) {
   
   // get meta
   $resources  = get_post_meta( $id, '_amcharts_resources', true );
-	$html       = amcharts_parse_code( get_post_meta( $id, '_amcharts_html', true ) );
-	$javascript = amcharts_parse_code( get_post_meta( $id, '_amcharts_javascript', true ) );
+  $html       = amcharts_parse_code( get_post_meta( $id, '_amcharts_html', true ) );
+  $javascript = amcharts_parse_code( get_post_meta( $id, '_amcharts_javascript', true ) );
   
   // enqueue resources
   $libs = preg_split( '/\R/', $resources );
@@ -146,15 +146,15 @@ if ( is_admin() )
 
 function amcharts_enqueue_scripts() {
   // own
-	wp_enqueue_style( 'amcharts-admin', plugins_url( 'lib/amcharts_admin.css', AMCHARTS_BASE ), array(), AMCHARTS_VERSION );
-	wp_enqueue_script( 'amcharts-admin', plugins_url( 'lib/amcharts_admin.js', AMCHARTS_BASE ), array( 'jquery' ), AMCHARTS_VERSION );
+  wp_enqueue_style( 'amcharts-admin', plugins_url( 'lib/amcharts_admin.css', AMCHARTS_BASE ), array(), AMCHARTS_VERSION );
+  wp_enqueue_script( 'amcharts-admin', plugins_url( 'lib/amcharts_admin.js', AMCHARTS_BASE ), array( 'jquery' ), AMCHARTS_VERSION );
   
   // codemirror
   wp_enqueue_style( 'codemirror', plugins_url( 'lib/codemirror/codemirror.css', AMCHARTS_BASE ), array(), AMCHARTS_VERSION );
   wp_enqueue_script( 'codemirror', plugins_url( 'lib/codemirror/codemirror.js', AMCHARTS_BASE ), array( 'amcharts-admin' ), AMCHARTS_VERSION );
   wp_enqueue_script( 'codemirror-javascript', plugins_url( 'lib/codemirror/mode/javascript/javascript.js', AMCHARTS_BASE ), array( 'codemirror' ), AMCHARTS_VERSION );
-	wp_enqueue_script( 'codemirror-css', plugins_url( 'lib/codemirror/mode/css/css.js', AMCHARTS_BASE ), array( 'codemirror' ), AMCHARTS_VERSION );
-	wp_enqueue_script( 'codemirror-xml', plugins_url( 'lib/codemirror/mode/xml/xml.js', AMCHARTS_BASE ), array( 'codemirror' ), AMCHARTS_VERSION );
+  wp_enqueue_script( 'codemirror-css', plugins_url( 'lib/codemirror/mode/css/css.js', AMCHARTS_BASE ), array( 'codemirror' ), AMCHARTS_VERSION );
+  wp_enqueue_script( 'codemirror-xml', plugins_url( 'lib/codemirror/mode/xml/xml.js', AMCHARTS_BASE ), array( 'codemirror' ), AMCHARTS_VERSION );
   wp_enqueue_script( 'codemirror-htmlmixed', plugins_url( 'lib/codemirror/mode/htmlmixed/htmlmixed.js', AMCHARTS_BASE ), array( 'codemirror', 'codemirror-css', 'codemirror-xml' ), AMCHARTS_VERSION );
 }
 
@@ -226,11 +226,11 @@ function amcharts_wp_footer () {
 
 add_filter( 'template_include', 'amcharts_preview_template', 99 );
 function amcharts_preview_template( $template ) {
-	
-	if ( isset( $_GET['amcharts_preview'] ) )
-		$template = AMCHARTS_DIR . '/includes/preview.php';
+  
+  if ( isset( $_GET['amcharts_preview'] ) )
+    $template = AMCHARTS_DIR . '/includes/preview.php';
 
-	return $template;
+  return $template;
 }
 
 /**
@@ -244,7 +244,7 @@ register_uninstall_hook( AMCHARTS_BASE, 'amcharts_deactivate' );
 add_action( 'admin_init', 'amcharts_check_activation' );
 function amcharts_check_activation () {
   if ( ! get_option( 'amcharts_activated' ) ) {
-		amcharts_activate();
+    amcharts_activate();
   }
 }
 
@@ -253,17 +253,17 @@ function amcharts_activate () {
   if ( ! current_user_can( 'activate_plugins' ) )
     return;
   
-	// set defaults
-	$settings = amcharts_get_defaults();
-	
-	//die();
-	// update options
-	update_option( 'amcharts_options', $settings );
+  // set defaults
+  $settings = amcharts_get_defaults();
+  
+  //die();
+  // update options
+  update_option( 'amcharts_options', $settings );
   update_option( 'amcharts_activated', true );
 }
 
 function amcharts_deactivate () {
-	// TODO: do this on all sites on Multisite install
+  // TODO: do this on all sites on Multisite install
   delete_option( 'amcharts_activated' );
 }
 
@@ -272,3 +272,15 @@ function amcharts_deactivate () {
  */
 
 wp_oembed_add_provider( 'http://live.amcharts.com/*', 'http://live.amcharts.com/oembed/' );
+
+/**
+ * A filter to add custom parameters to oEmbed url
+ */
+
+add_filter( 'oembed_fetch_url', 'amcharts_oembed_fetch_url', 10, 3 );
+function amcharts_oembed_fetch_url( $provider, $url, $args ) {
+  if ( false !== strpos( $provider, 'live.amcharts.com' ) && !empty( $args['src'] ) ) {
+    $provider = add_query_arg( 'src', $args['src'], $provider );
+  }
+  return $provider;
+}

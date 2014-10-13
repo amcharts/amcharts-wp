@@ -79,13 +79,13 @@ wp_admin_css( 'wp-admin', true );
     <p>
       <input type="text" value="" id="live-editor-url" placeholder="<?php _e( 'Enter a URL to a chart created in Live Editor', 'amcharts' ); ?>" class="widefat" />
     </p>
+    <p class="description"><?php _e( 'Once you publish the chart in Live Editor, copy and paste it\'s URL into field above.', 'amcharts' ); ?></p>
+    <p class="description"><?php _e( 'I.e.: http://live.amcharts.com/NmU2Z/', 'amcharts' ); ?></p>
     <p>
       <input type="text" value="" id="live-editor-width" placeholder="<?php _e( 'Width (default: 400px)', 'amcharts' ); ?>" class="fat" />
       <input type="text" value="" id="live-editor-height" placeholder="<?php _e( 'Height (default: 300px)', 'amcharts' ); ?>" class="fat" />
       <input type="button" id="live-editor-ok" value="<?php _e( 'Insert', 'amcharts' ); ?>" class="button button-primary" />
     </p>
-    <p class="description"><?php _e( 'Once you publish the chart in Live Editor, copy and paste it\'s URL into field above.', 'amcharts' ); ?></p>
-    <p class="description"><?php _e( 'I.e.: http://live.amcharts.com/NmU2Z/', 'amcharts' ); ?></p>
     <p>
       <input type="button" value="<?php _e( 'Open Live Editor', 'amcharts' ); ?>" onclick="window.open('http://live.amcharts.com/');" class="button" />
       <span class="description"><?php _e( 'This will open Live Editor in a new window', 'amcharts' ); ?></span>
@@ -130,6 +130,20 @@ wp_admin_css( 'wp-admin', true );
       var height = $( '#live-editor-height' ).val();
       if ( '' != width ) embed += ' width="' + width + '"';
       if ( '' != height ) embed += ' height="' + height + '"';
+      <?php
+      // use our own libraries?
+      $settings = get_option( 'amcharts_options', array( 'own' => 0, 'paths' => '' ) );
+      if ( '1' == $settings['own'] ) {
+        $paths = preg_split( '/\R/', $settings['paths'] );
+        $path = array_shift( $paths );
+        if ( '' == $path )
+          break;
+        $path = home_url( $path );
+        ?>
+        embed += ' src="<?php echo $path; ?>" tkn="replaceDefault"';
+        <?php
+      }
+      ?>
       embed += ']' + url + '[/embed]'
       window.parent.tinyMCE.activeEditor.execCommand( 'mceInsertContent', false, embed );
       parent.tinyMCE.activeEditor.windowManager.close( window );
