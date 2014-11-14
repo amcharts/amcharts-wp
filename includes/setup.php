@@ -125,7 +125,7 @@ function amcharts_shortcode ( $atts ) {
   $javascript = amcharts_parse_code( get_post_meta( $id, '_amcharts_javascript', true ) );
   
   // enqueue resources
-  $libs = preg_split( '/\R/', $resources );
+  $libs = amcharts_split_libs( $resources );
   foreach ( $libs as $lib ) {
     wp_enqueue_script( 'amcharts-external-' . md5( basename( $lib ) ), $lib, array(), AMCHARTS_VERSION, true );
   }

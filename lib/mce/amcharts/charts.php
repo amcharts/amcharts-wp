@@ -134,7 +134,7 @@ wp_admin_css( 'wp-admin', true );
       // use our own libraries?
       $settings = get_option( 'amcharts_options', array( 'own' => 0, 'paths' => '' ) );
       if ( '1' == $settings['own'] ) {
-        $paths = preg_split( '/\R/', $settings['paths'] );
+        $paths = amcharts_split_libs( $settings['paths'] );
         $path = array_shift( $paths );
         if ( '' == $path )
           break;

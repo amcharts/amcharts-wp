@@ -263,8 +263,8 @@ function amcharts_settings_show () {
                 </p>
                 <p>
                   <?php
-                  $libs = preg_split( '/\R/', $settings['resources'] );
-                  $libs = array_merge( $libs, preg_split( '/\R/', $settings['custom_resources'] ) );
+                  $libs = amcharts_split_libs( $settings['resources'] );
+                  $libs = array_merge( $libs, amcharts_split_libs( $settings['custom_resources'] ) );
                   ?>
                   <select class="amcharts-select-resource">
                     <option value=""><?php _e( 'Select a resource', 'amcharts' ); ?></option>
@@ -372,7 +372,7 @@ function amcharts_find_me_branch ( $path, $paths = false ) {
 function amcharts_get_available_resources ( $type = 'remote', $paths = '' ) {
   $res = '';
   if ( 'local' == $type ) {
-    $dirs = preg_split( '/\R/', $paths );
+    $dirs = amcharts_split_libs( $paths );
     
     // libraries
     $libs = array();

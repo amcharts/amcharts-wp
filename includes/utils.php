@@ -82,3 +82,11 @@ function amcharts_generate_slug ( $type = 'chart' ) {
 	
 	return $slug;
 }
+
+/**
+ * Splits up resources list into array
+ */
+
+function amcharts_split_libs ( $resources ) {
+	return preg_split( '/\s+/', trim ( $resources ) );
+}

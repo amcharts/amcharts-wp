@@ -4,7 +4,7 @@
  */
 
 // enqueue resources
-$libs = preg_split( '/\R/', amcharts_stripslashes( $_POST['amcharts_resources'] ) );
+$libs = amcharts_split_libs( amcharts_stripslashes( $_POST['amcharts_resources'] ) );
 foreach ( $libs as $lib ) {
 	wp_enqueue_script( 'amcharts-external-' . md5( basename( $lib ) ), $lib, array(), AMCHARTS_VERSION, true );
 }
