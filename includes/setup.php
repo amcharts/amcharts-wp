@@ -123,6 +123,11 @@ function amcharts_shortcode ( $atts ) {
   $resources  = get_post_meta( $id, '_amcharts_resources', true );
   $html       = amcharts_parse_code( get_post_meta( $id, '_amcharts_html', true ) );
   $javascript = amcharts_parse_code( get_post_meta( $id, '_amcharts_javascript', true ) );
+
+  // wrap with exception code if necessary
+  $settings = get_option( 'amcharts_options' );
+  if ( isset( $settings['wrap'] ) && '1' == $settings['wrap'] )
+    $javascript = "try {\n" . $javascript . "\n}\ncatch( err ) { console.log( err ); }";
   
   // enqueue resources
   $libs = amcharts_split_libs( $resources );
@@ -256,7 +261,6 @@ function amcharts_activate () {
   // set defaults
   $settings = amcharts_get_defaults();
   
-  //die();
   // update options
   update_option( 'amcharts_options', $settings );
   update_option( 'amcharts_activated', true );

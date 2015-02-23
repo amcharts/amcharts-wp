@@ -11,7 +11,11 @@ foreach ( $libs as $lib ) {
 
 // enqueue JavaScript part
 amcharts_increment_instance();
-amcharts_enqueue_javascript( amcharts_parse_code( amcharts_stripslashes( $_POST['amcharts_javascript'] ) ) );
+$javascript = amcharts_parse_code( amcharts_stripslashes( $_POST['amcharts_javascript'] ) );
+$settings = get_option( 'amcharts_options' );
+if ( isset( $settings['wrap'] ) && '1' == $settings['wrap'] )
+  $javascript = "try {\n" . $javascript . "\n}\ncatch( err ) { console.log( err ); }";
+amcharts_enqueue_javascript( $javascript );
 ?>
 
 <!DOCTYPE html>

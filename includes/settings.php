@@ -17,6 +17,7 @@ function amcharts_get_defaults () {
     'location'            => 'remote',
     'own'                 => '0',
     'paths'               => '',
+    'wrap'                => '1',
     'resources'           => amcharts_get_available_resources(),
     'custom_resources'    => '',
     'chart_types'         => array()
@@ -61,6 +62,7 @@ function amcharts_settings_show () {
     
     // get submited data
     $settings['own']                = isset( $_POST['own'] ) && '1' == $_POST['own'] ? '1' : '0';
+    $settings['wrap']               = isset( $_POST['wrap'] ) && '1' == $_POST['wrap'] ? '1' : '0';
     $settings['location']           = isset( $_POST['location'] ) ? trim( $_POST['location'] ) : 'remote';
     $settings['paths']              = isset( $_POST['paths'] ) ? trim( $_POST['paths'] ) : '';
     $settings['custom_resources']   = isset( $_POST['custom_resources'] ) ? trim( $_POST['custom_resources'] ) : '';
@@ -160,6 +162,21 @@ function amcharts_settings_show () {
             <p class="description">- <?php _e( 'Check "Resources are stored locally" above.', 'amcharts' ); ?></p>
             <p class="description">- <?php _e( 'You may need to also click "Find them for me" button under "Local Paths".', 'amcharts' ); ?></p>
             <p class="description">- <?php _e( 'Check "Use local amCharts libraries" above.', 'amcharts' ); ?></p>
+          </fieldset>
+        </td>
+      </tr>
+
+      <tr valign="top">
+        <th scope="row"><?php _e( 'Error Handling', 'amcharts' ); ?></th>
+        <td>
+          <fieldset>
+            <p>
+              <label><input type="checkbox" name="wrap" value="1" <?php
+                echo '1' == $settings['wrap'] ? ' checked="checked"' : '';
+              ?> /> <?php _e( 'Use exception handling on chart and map code (recommended)', 'amcharts' ); ?></label>
+            </p>
+            <p class="description"><?php _e( 'If checked, the code for charts and maps will be wrapped with exception handling code (try / catch).', 'amcharts' ); ?></p>
+            <p class="description"><?php _e( 'This will make sure a faulty code does not prevent other JavaScript on the same page executing properly.', 'amcharts' ); ?></p>
           </fieldset>
         </td>
       </tr>
