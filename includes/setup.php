@@ -95,6 +95,7 @@ function amcharts_get ( $chart_id ) {
 
 add_shortcode( 'amcharts' , 'amcharts_shortcode' );
 function amcharts_shortcode ( $atts ) {
+  
   extract( shortcode_atts( array(
     'id' => ''
   ), $atts ) );
@@ -123,6 +124,17 @@ function amcharts_shortcode ( $atts ) {
   $resources  = get_post_meta( $id, '_amcharts_resources', true );
   $html       = amcharts_parse_code( get_post_meta( $id, '_amcharts_html', true ) );
   $javascript = amcharts_parse_code( get_post_meta( $id, '_amcharts_javascript', true ) );
+
+  // add data passed via shortcode
+  $pass = array();
+  foreach ( $atts as $att ) {
+    if ( 0 === strpos( $att , 'data-' ) ) {
+      list( $key, $val ) = explode( '=', $att );
+      $pass[ substr( $key, 5 ) ] = str_replace( '"', '', $val );
+    }
+  }
+  if ( sizeof( $pass ) )
+    $javascript = "AmCharts.wpChartData = " . json_encode( $pass ) . ";\n" . $javascript;
 
   // wrap with exception code if necessary
   $settings = get_option( 'amcharts_options' );
