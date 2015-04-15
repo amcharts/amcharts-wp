@@ -300,3 +300,41 @@ function amcharts_oembed_fetch_url( $provider, $url, $args ) {
   }
   return $provider;
 }
+
+/**
+ * Manage plugin version upgrades
+ */
+add_action( 'plugins_loaded', 'amcharts_check_version' );
+function amcharts_check_version () {
+  $version = get_option( 'amcharts_version', '1.0.0' );
+  if ( $version != AMCHARTS_VERSION ) {
+    
+    // get numeric representation
+    $version = str_replace( '.', '', $version );
+
+    // the version does not match
+    // run necessary checks
+    $settings = get_option( 'amcharts_options', array() );
+    $chart_libs = amcharts_get_chart_type_libs();
+    $resources = amcharts_get_available_resources();
+
+    // 1.0.8 and down
+    if ( $version <= 108 ) {
+
+      // populate gantt chart type defaults
+      $settings['chart_types']['gantt'] = array(
+        'default_resources'   => amcharts_get_resources( $chart_libs['gantt'], $resources ),
+        'custom_resources'    => 0,
+        'default_html'        => amcharts_get_default( 'gantt', 'html' ),
+        'default_javascript'  => amcharts_get_default( 'gantt', 'javascript' )
+      );
+
+    }
+
+    update_option( 'amcharts_options', $settings );
+
+    // update the version
+    update_option( 'amcharts_version', AMCHARTS_VERSION );
+    
+  }
+}

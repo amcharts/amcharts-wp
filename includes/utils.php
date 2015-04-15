@@ -20,6 +20,7 @@ function amcharts_get_chart_types () {
 		'funnel' 	=> __( 'Funnel', 'amcharts' ),
 		'radar' 	=> __( 'Radar', 'amcharts' ),
 		'gauge' 	=> __( 'Gauge', 'amcharts' ),
+		'gantt' 	=> __( 'Gantt', 'amcharts' ),
 		'stock' 	=> __( 'Stock', 'amcharts' ),
 		'map' 		=> __( 'Map', 'amcharts' )
 	);
@@ -37,6 +38,7 @@ function amcharts_get_chart_type_libs () {
 		'funnel' 	=> array( 'amcharts.js', 'funnel.js' ),
 		'radar' 	=> array( 'amcharts.js', 'radar.js' ),
 		'gauge' 	=> array( 'amcharts.js', 'gauge.js' ),
+		'gantt' 	=> array( 'amcharts.js', 'serial.js', 'gantt.js' ),
 		'stock' 	=> array( 'amcharts.js', 'serial.js', 'amstock.js' ),
 		'map' 		=> array( 'ammap.js', 'worldLow.js' )
 	);
@@ -78,7 +80,7 @@ function amcharts_generate_slug ( $type = 'chart' ) {
 			)
 		) ) )
 			$continue = false;
-	} while ( $contine );
+	} while ( $continue );
 	
 	return $slug;
 }

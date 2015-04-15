@@ -3,7 +3,7 @@ Contributors: martynasma
 Tags: charts, maps, amcharts, ammap, javascript charts, javascript maps
 Requires at least: 3.0
 Tested up to: 4.1.1
-Stable tag: 1.0.8
+Stable tag: 1.0.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -105,6 +105,9 @@ You can then reference those passed variables in your chart code. I.e.:
 7. The chart shortcodes are replaced with the actual charts when page renders.
 
 == Changelog ==
+
+= 1.0.9 =
+* Added GANTT chart type support
 
 = 1.0.8 =
 * Resource list now contains amCharts plugins
