@@ -309,6 +309,7 @@ function amcharts_oembed_fetch_url( $provider, $url, $args ) {
  */
 add_action( 'plugins_loaded', 'amcharts_check_version' );
 function amcharts_check_version () {
+  
   $version = get_option( 'amcharts_version', '1.0.0' );
   if ( $version != AMCHARTS_VERSION ) {
     
@@ -336,16 +337,8 @@ function amcharts_check_version () {
 
     // 1.0.9 and down
     if ( $version <= 109 ) {
-
       // refresh resource list (to include CSS files)
       $settings['resources'] = amcharts_get_available_resources( $settings['location'], $settings['paths'] );
-      
-      reset( $chart_libs );
-      foreach ( $chart_libs as $chart_type => $libs ) {
-        if ( ! $settings['chart_types'][$chart_type]['custom_resources'] )
-          $settings['chart_types'][$chart_type]['default_resources'] = amcharts_get_resources( $libs, $settings['resources'] );
-      }
-
     }
 
     update_option( 'amcharts_options', $settings );
