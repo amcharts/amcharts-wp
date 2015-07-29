@@ -394,19 +394,19 @@ function amcharts_get_available_resources ( $type = 'remote', $paths = '' ) {
     // libraries
     $libs = array();
     foreach ( $dirs as $path ) {
-      $libs = array_merge( $libs, amcharts_get_js_files( ABSPATH . $path, home_url( $path ) ) );
+      $libs = array_merge( $libs, amcharts_get_resource_files( ABSPATH . $path, home_url( $path ) ) );
     }
     
     // maps
     reset( $dirs );
     foreach ( $dirs as $path ) {
-      $libs = array_merge( $libs, amcharts_get_js_files( ABSPATH . $path . 'maps/js/', home_url( $path . 'maps/js/' ) ) );
+      $libs = array_merge( $libs, amcharts_get_resource_files( ABSPATH . $path . 'maps/js/', home_url( $path . 'maps/js/' ) ) );
     }
 
     // plugins
     reset( $dirs );
     foreach ( $dirs as $path ) {
-      $libs = array_merge( $libs, amcharts_get_js_files_deep( ABSPATH . $path . 'plugins/', home_url( $path . 'plugins/' ) ) );
+      $libs = array_merge( $libs, amcharts_get_resource_files_deep( ABSPATH . $path . 'plugins/', home_url( $path . 'plugins/' ) ) );
     }
     
     $res = implode( "\n", $libs );
@@ -450,14 +450,14 @@ function amcharts_get_default ( $chart_type, $context ) {
  * Returns a list of JS files in a directory
  */
 
-function amcharts_get_js_files ( $dir, $path = '' ) {
+function amcharts_get_resource_files ( $dir, $path = '' ) {
   $res = array();
   if ( !file_exists( $dir ) )
     return $res;
   
   $files = scandir( $dir );
   foreach ( $files as $file ) {
-    if ( preg_match( '/\.js$/', $file ) )
+    if ( preg_match( '/\.js|\.css$/', $file ) )
       $res[] = $path . $file;
   }
   return $res;
@@ -467,7 +467,7 @@ function amcharts_get_js_files ( $dir, $path = '' ) {
  * Returns a list of JS files in a direcory and it's subdirectories
  */
 
-function amcharts_get_js_files_deep ( $dir, $path = '' ) {
+function amcharts_get_resource_files_deep ( $dir, $path = '' ) {
   $res = array();
   if ( !file_exists( $dir ) )
     return $res;
@@ -475,8 +475,8 @@ function amcharts_get_js_files_deep ( $dir, $path = '' ) {
   $files = scandir( $dir );
   foreach ( $files as $file ) {
     if ( is_dir( $dir . $file ) && ! in_array( $file, array( '.', '..') ) )
-      $res = array_merge( $res, amcharts_get_js_files_deep( $dir . $file, $path . $file . '/' ) );
-    elseif ( preg_match( '/\.js$/', $file ) )
+      $res = array_merge( $res, amcharts_get_resource_files_deep( $dir . $file, $path . $file . '/' ) );
+    elseif ( preg_match( '/\.js|\.css$/', $file ) )
       $res[] = $path . $file;
 
   }

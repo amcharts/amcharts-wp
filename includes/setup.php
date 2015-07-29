@@ -144,7 +144,10 @@ function amcharts_shortcode ( $atts ) {
   // enqueue resources
   $libs = amcharts_split_libs( $resources );
   foreach ( $libs as $lib ) {
-    wp_enqueue_script( 'amcharts-external-' . md5( basename( $lib ) ), $lib, array(), AMCHARTS_VERSION, true );
+    if ( preg_match( '/\\.css/i', $lib ) )
+      wp_enqueue_style( 'amcharts-external-' . md5( basename( $lib ) ), $lib, array(), AMCHARTS_VERSION );
+    else
+      wp_enqueue_script( 'amcharts-external-' . md5( basename( $lib ) ), $lib, array(), AMCHARTS_VERSION, true );
   }
   
   // enqueue JavaScript part
@@ -328,6 +331,20 @@ function amcharts_check_version () {
         'default_html'        => amcharts_get_default( 'gantt', 'html' ),
         'default_javascript'  => amcharts_get_default( 'gantt', 'javascript' )
       );
+
+    }
+
+    // 1.0.9 and down
+    if ( $version <= 109 ) {
+
+      // refresh resource list (to include CSS files)
+      $settings['resources'] = amcharts_get_available_resources( $settings['location'], $settings['paths'] );
+      
+      reset( $chart_libs );
+      foreach ( $chart_libs as $chart_type => $libs ) {
+        if ( ! $settings['chart_types'][$chart_type]['custom_resources'] )
+          $settings['chart_types'][$chart_type]['default_resources'] = amcharts_get_resources( $libs, $settings['resources'] );
+      }
 
     }
 
