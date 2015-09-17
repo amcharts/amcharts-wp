@@ -2,8 +2,8 @@
 Contributors: martynasma
 Tags: charts, maps, amcharts, ammap, javascript charts, javascript maps
 Requires at least: 3.0
-Tested up to: 4.2.3
-Stable tag: 1.0.11
+Tested up to: 4.3.1
+Stable tag: 1.0.12
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -105,6 +105,9 @@ You can then reference those passed variables in your chart code. I.e.:
 7. The chart shortcodes are replaced with the actual charts when page renders.
 
 == Changelog ==
+
+= 1.0.12 =
+* Added support for WP installs with non-standard directories
 
 = 1.0.11 =
 * Fixed a critical error after upgrade

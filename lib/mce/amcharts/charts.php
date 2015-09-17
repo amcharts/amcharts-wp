@@ -1,7 +1,16 @@
 <?php
 // get WP path
-$p = explode( 'wp-content', __FILE__ );
-require_once( $p[0] . '/wp-load.php' );
+$webroot_dir = explode( 'wp-content', __FILE__ );
+$webroot_dir = $webroot_dir[0];
+if ( ! file_exists( "{$webroot_dir}wp-load.php" ) ) {
+  // WP is installed in a different directory
+  // retrieve the path from wp-config.php
+  require_once( "{$webroot_dir}wp-config.php" );
+  require_once( ABSPATH . "wp-load.php" );
+}
+else {
+  require_once( "{$webroot_dir}wp-load.php" );
+}
 
 // headers
 header('Content-Type: text/html; charset=' . get_bloginfo('charset'));
