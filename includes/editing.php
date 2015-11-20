@@ -110,7 +110,7 @@ function amcharts_html_box ( $post ) {
 	</p>
 	
 	<p class="description">
-		<?php _e( 'Please use the following code <strong>%CHART%</strong> in place of the chart IDs or variables. It will be replaced with the proper, safe and unique chart ID when generating the page', 'amcharts' ); ?>
+		<?php _e( 'Please use the following code <strong>$CHART$</strong> in place of the chart IDs or variables. It will be replaced with the proper, safe and unique chart ID when generating the page', 'amcharts' ); ?>
 	</p>
 	
 	<?php
@@ -141,7 +141,7 @@ function amcharts_javascript_box ( $post ) {
 	</p>
 	
 	<p class="description">
-		<?php _e( 'Please use the following code <strong>%CHART%</strong> in place of the chart IDs or variables. It will be replaced with the proper, safe and unique chart ID when generating the page', 'amcharts' ); ?>
+		<?php _e( 'Please use the following code <strong>$CHART$</strong> in place of the chart IDs or variables. It will be replaced with the proper, safe and unique chart ID when generating the page', 'amcharts' ); ?>
 	</p>
 	
 	<?php

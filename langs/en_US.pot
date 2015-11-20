@@ -1,0 +1,460 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"Project-Id-Version: amCharts: Charts and Maps\n"
+"POT-Creation-Date: 2015-11-20 11:25+0200\n"
+"PO-Revision-Date: 2015-11-20 11:24+0200\n"
+"Last-Translator: Martynas Majeris <martynasma@gmail.com>\n"
+"Language-Team: Martynas Majeris <martynasma@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.6\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-WPHeader: amcharts.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: includes/editing.php:11 includes/settings.php:114 includes/settings.php:271
+msgid "Resources"
+msgstr ""
+
+#: includes/editing.php:18 includes/settings.php:316
+msgid "HTML"
+msgstr ""
+
+#: includes/editing.php:25 includes/settings.php:324
+msgid "JavaScript"
+msgstr ""
+
+#: includes/editing.php:32
+msgid "Apply default code"
+msgstr ""
+
+#: includes/editing.php:39
+msgid "Chart tools"
+msgstr ""
+
+#: includes/editing.php:76 includes/settings.php:292
+msgid "Select a resource"
+msgstr ""
+
+#: includes/editing.php:83 includes/settings.php:299
+msgid "Add"
+msgstr ""
+
+#: includes/editing.php:113 includes/editing.php:144
+msgid ""
+"Please use the following code <strong>$CHART$</strong> in place of the chart "
+"IDs or variables. It will be replaced with the proper, safe and unique chart "
+"ID when generating the page"
+msgstr ""
+
+#: includes/editing.php:162
+msgid "Select a chart type to apply"
+msgstr ""
+
+#: includes/editing.php:167
+msgid "Apply"
+msgstr ""
+
+#: includes/editing.php:171
+msgid ""
+"ATTENTION! When you select a chart type above and click \"Apply\", the "
+"content in Resources, HTML and JavaScript fields will be overwritten with "
+"the defaults set by the website administrator."
+msgstr ""
+
+#: includes/editing.php:200
+msgid "Slug"
+msgstr ""
+
+#: includes/editing.php:202
+msgid ""
+"Use this field to enter a user-friendly slug (ID) for your chart that can be "
+"used in shortcodes, i.e. [amcharts id=\"chart-1\"]"
+msgstr ""
+
+#: includes/editing.php:205
+msgid "Preview chart or map"
+msgstr ""
+
+#: includes/editing.php:248
+msgid "Shortcode"
+msgstr ""
+
+#: includes/editing.php:294
+msgid "Insert chart or map"
+msgstr ""
+
+#: includes/editing.php:295 lib/mce/amcharts/charts.php:22
+msgid "Select a chart or map to insert"
+msgstr ""
+
+#: includes/editing.php:296
+msgid "Are you sure? This operation cannot be undone."
+msgstr ""
+
+#: includes/editing.php:316
+msgid "Search results"
+msgstr ""
+
+#: includes/editing.php:319
+msgid "Recent charts"
+msgstr ""
+
+#: includes/preview.php:28
+msgid "amCharts Preview"
+msgstr ""
+
+#: includes/settings.php:42
+msgid "You do not have sufficient permissions to access this page."
+msgstr ""
+
+#: includes/settings.php:99
+msgid "Settings were successfully saved!"
+msgstr ""
+
+#: includes/settings.php:105
+msgid "amCharts: Settings"
+msgstr ""
+
+#: includes/settings.php:121
+msgid "Resource Storage"
+msgstr ""
+
+#: includes/settings.php:127
+msgid "Resources are stored remotely "
+msgstr ""
+
+#: includes/settings.php:129
+msgid ""
+"The free versions of libraries will be loaded from www.amcharts.com. These "
+"are fully functional but will show a small branding link on charts or maps."
+msgstr ""
+
+#: includes/settings.php:130
+msgid ""
+"Want a link-free version? <a href=\"http://www.amcharts.com/online-store/\" "
+"target=\"_blank\">Purchase a commercial version</a> and help the development "
+"of this product as well as increase your karma points in the process."
+msgstr ""
+
+#: includes/settings.php:142
+msgid "Resources are stored locally "
+msgstr ""
+
+#: includes/settings.php:144
+msgid "This allows you to load the libraries from the local server."
+msgstr ""
+
+#: includes/settings.php:152
+msgid "Live Editor Integration"
+msgstr ""
+
+#: includes/settings.php:158
+msgid "Use local amCharts libraries for Live Editor-hosted charts"
+msgstr ""
+
+#: includes/settings.php:160
+msgid ""
+"If you want to display Live Editor-created charts without branding link:"
+msgstr ""
+
+#: includes/settings.php:161
+msgid "Install commercial version of amCharts libraries."
+msgstr ""
+
+#: includes/settings.php:162
+msgid "Check \"Resources are stored locally\" above."
+msgstr ""
+
+#: includes/settings.php:163
+msgid ""
+"You may need to also click \"Find them for me\" button under \"Local Paths\"."
+msgstr ""
+
+#: includes/settings.php:164
+msgid "Check \"Use local amCharts libraries\" above."
+msgstr ""
+
+#: includes/settings.php:170
+msgid "Error Handling"
+msgstr ""
+
+#: includes/settings.php:176
+msgid "Use exception handling on chart and map code (recommended)"
+msgstr ""
+
+#: includes/settings.php:178
+msgid ""
+"If checked, the code for charts and maps will be wrapped with exception "
+"handling code (try / catch)."
+msgstr ""
+
+#: includes/settings.php:179
+msgid ""
+"This will make sure a faulty code does not prevent other JavaScript on the "
+"same page executing properly."
+msgstr ""
+
+#: includes/settings.php:188
+msgid "Local Paths"
+msgstr ""
+
+#: includes/settings.php:189
+msgid ""
+"Enter paths to your amCharts folders. Separate them by line breaks. The "
+"paths must be relative to your web root."
+msgstr ""
+
+#: includes/settings.php:198
+msgid ""
+"If you are not sure what to do, just unzip the amCharts archive you have "
+"downloaded and put into some directory under your web root. Then click "
+"\"Find them for me\"."
+msgstr ""
+
+#: includes/settings.php:201
+msgid "Find them for me"
+msgstr ""
+
+#: includes/settings.php:203
+msgid "amCharts library was not found on your server"
+msgstr ""
+
+#: includes/settings.php:211
+msgid "Resource List"
+msgstr ""
+
+#: includes/settings.php:212
+msgid ""
+"This is a list of resources available for use. You will be able to select "
+"them while creating charts or maps."
+msgstr ""
+
+#: includes/settings.php:220
+msgid "Refresh the list"
+msgstr ""
+
+#: includes/settings.php:221
+msgid "Attention! Pressing this button will save current settings."
+msgstr ""
+
+#: includes/settings.php:229
+msgid "Custom Resources"
+msgstr ""
+
+#: includes/settings.php:230
+msgid ""
+"Add your own resources here. Full or relative URLs (we include them the way "
+"you have them here). Separate by line break."
+msgstr ""
+
+#: includes/settings.php:243
+msgid "Defaults"
+msgstr ""
+
+#: includes/settings.php:249
+msgid ""
+"This section allows setting default resources, HTML and JavaScript code per "
+"chart/map type."
+msgstr ""
+
+#: includes/settings.php:250
+msgid ""
+"When creating new chart or map entry, you will be able to select from one of "
+"these presets."
+msgstr ""
+
+#: includes/settings.php:275
+msgid ""
+"We did not find libraries required for this chart type in your local storage."
+msgstr ""
+
+#: includes/settings.php:276
+msgid ""
+"Make sure you hit the \"Refresh the list\" button higher on this page when "
+"you install them."
+msgstr ""
+
+#: includes/settings.php:308
+msgid "I want to manage resource list myself"
+msgstr ""
+
+#: includes/settings.php:312
+msgid ""
+"If the above box unchecked, plugin will manage required resources and their "
+"urls for you. If this is checked, you're on your own ;)"
+msgstr ""
+
+#: includes/settings.php:321
+msgid ""
+"Enter the default HTML to populate new entries with. Use <strong>$CHART$</"
+"strong> symbol for safe and unique chart ids and variables."
+msgstr ""
+
+#: includes/settings.php:330
+msgid ""
+"Enter the default JavaScript to populate new entries with. Use <strong>$CHART"
+"$</strong> symbol for safe and unique chart ids and variables."
+msgstr ""
+
+#: includes/setup.php:15 includes/setup.php:25
+msgctxt "amcharts"
+msgid "Charts &amp; Maps"
+msgstr ""
+
+#: includes/setup.php:16
+msgctxt "amcharts"
+msgid "Chart or Map"
+msgstr ""
+
+#: includes/setup.php:17
+msgctxt "amcharts"
+msgid "Add New"
+msgstr ""
+
+#: includes/setup.php:18
+msgctxt "amcharts"
+msgid "Add New Chart or Map"
+msgstr ""
+
+#: includes/setup.php:19
+msgctxt "amcharts"
+msgid "Edit Chart or Map"
+msgstr ""
+
+#: includes/setup.php:20
+msgctxt "amcharts"
+msgid "New Chart or Map"
+msgstr ""
+
+#: includes/setup.php:21
+msgctxt "amcharts"
+msgid "View Chart or Map"
+msgstr ""
+
+#: includes/setup.php:22
+msgctxt "amcharts"
+msgid "Search Charts &amp; Maps"
+msgstr ""
+
+#: includes/setup.php:23
+msgctxt "amcharts"
+msgid "No charts or maps found"
+msgstr ""
+
+#: includes/setup.php:24
+msgctxt "amcharts"
+msgid "No charts or maps found in Trash"
+msgstr ""
+
+#: includes/utils.php:17
+msgid "Serial"
+msgstr ""
+
+#: includes/utils.php:18
+msgid "Pie"
+msgstr ""
+
+#: includes/utils.php:19
+msgid "XY"
+msgstr ""
+
+#: includes/utils.php:20
+msgid "Funnel"
+msgstr ""
+
+#: includes/utils.php:21
+msgid "Radar"
+msgstr ""
+
+#: includes/utils.php:22
+msgid "Gauge"
+msgstr ""
+
+#: includes/utils.php:23
+msgid "Gantt"
+msgstr ""
+
+#: includes/utils.php:24
+msgid "Stock"
+msgstr ""
+
+#: includes/utils.php:25
+msgid "Map"
+msgstr ""
+
+#: lib/mce/amcharts/charts.php:83
+msgid "Local Charts"
+msgstr ""
+
+#: lib/mce/amcharts/charts.php:84
+msgid "Live Editor"
+msgstr ""
+
+#: lib/mce/amcharts/charts.php:89
+msgid "Enter a URL to a chart created in Live Editor"
+msgstr ""
+
+#: lib/mce/amcharts/charts.php:91
+msgid ""
+"Once you publish the chart in Live Editor, copy and paste it's URL into "
+"field above."
+msgstr ""
+
+#: lib/mce/amcharts/charts.php:92
+msgid "I.e.: http://live.amcharts.com/NmU2Z/"
+msgstr ""
+
+#: lib/mce/amcharts/charts.php:94
+msgid "Width (default: 400px)"
+msgstr ""
+
+#: lib/mce/amcharts/charts.php:95
+msgid "Height (default: 300px)"
+msgstr ""
+
+#: lib/mce/amcharts/charts.php:96
+msgid "Insert"
+msgstr ""
+
+#: lib/mce/amcharts/charts.php:99
+msgid "Open Live Editor"
+msgstr ""
+
+#: lib/mce/amcharts/charts.php:100
+msgid "This will open Live Editor in a new window"
+msgstr ""
+
+#: lib/mce/amcharts/charts.php:105
+msgid "Start typing to search"
+msgstr ""
+
+#: lib/mce/amcharts/charts.php:134
+msgid "Please enter a chart URL"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "amCharts: Charts and Maps"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"Use this plugin to easily add interactive charts and maps using amChart's "
+"JavaScript Charts and JavaScript Maps products"
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "amCharts"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://www.amcharts.com/"
+msgstr ""

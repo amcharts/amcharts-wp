@@ -102,7 +102,7 @@ function amcharts_settings_show () {
   ?>
   
   <?php screen_icon(); ?>
-  <h2><?php echo __( 'amCharts: Settings'); ?></h2>
+  <h1><?php echo __( 'amCharts: Settings'); ?></h1>
   
   <?php if ( count($errors) > 0 ) : ?>
   <div class="message error"><?php echo wpautop(implode("\n", $errors)); ?></div>
@@ -111,7 +111,7 @@ function amcharts_settings_show () {
   <div class="message updated"><?php echo wpautop($success); ?></div>
   <?php endif; ?>
   
-  <h3><?php echo __( 'Resources', 'amcharts' ); ?></h3>
+  <h2 class="title"><?php echo __( 'Resources', 'amcharts' ); ?></h2>
   
   <form method="post" action="">
     
@@ -237,10 +237,15 @@ function amcharts_settings_show () {
           </fieldset>
         </td>
       </tr>
-      
+    </tbody>
+  </table>
+
+  <h2 class="title"><?php echo __( 'Defaults', 'amcharts' ); ?></h2>
+
+  <table class="form-table">
+    <tbody>
       <tr valign="top">
         <th scope="row">
-          <?php _e( 'Defaults', 'amcharts' ); ?>
           <p class="description"><?php _e( 'This section allows setting default resources, HTML and JavaScript code per chart/map type.', 'amcharts' ); ?></p>
           <p class="description"><?php _e( 'When creating new chart or map entry, you will be able to select from one of these presets.', 'amcharts' ); ?></p>
         </th>
@@ -313,7 +318,7 @@ function amcharts_settings_show () {
                 <textarea name="chart_types[<?php echo $chart_type; ?>][default_html]" class="widefat code code-html"><?php echo esc_textarea( $settings['chart_types'][$chart_type]['default_html'] ); ?></textarea>
               </p>
               <p>
-                <p class="description"><?php _e( 'Enter the default HTML to populate new entries with. Use <strong>%CHART%</strong> symbol for safe and unique chart ids and variables.' ); ?></p>
+                <p class="description"><?php _e( 'Enter the default HTML to populate new entries with. Use <strong>$CHART$</strong> symbol for safe and unique chart ids and variables.' ); ?></p>
               </p>
               
               <h4><?php _e( 'JavaScript', 'amcharts' ); ?></h4>
@@ -322,7 +327,7 @@ function amcharts_settings_show () {
                 <textarea name="chart_types[<?php echo $chart_type; ?>][default_javascript]" class="widefat code code-javascript"><?php echo esc_textarea( $settings['chart_types'][$chart_type]['default_javascript'] ); ?></textarea>
               </p>
               <p>
-                <p class="description"><?php _e( 'Enter the default JavaScript to populate new entries with. Use <strong>%CHART%</strong> symbol for safe and unique chart ids and variables.' ); ?></p>
+                <p class="description"><?php _e( 'Enter the default JavaScript to populate new entries with. Use <strong>$CHART$</strong> symbol for safe and unique chart ids and variables.' ); ?></p>
               </p>
               
             </div><?php

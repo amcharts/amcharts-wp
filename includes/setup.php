@@ -222,7 +222,7 @@ function amcharts_get_current_instance () {
 
 function amcharts_parse_code ( $code ) {
   $instance = 'amchart' . amcharts_get_current_instance();
-  return str_replace( '%CHART%', $instance, $code );
+  return str_replace( array( '%CHART%', '$CHART$' ), $instance, $code );
 }
 
 /**
@@ -314,7 +314,11 @@ function amcharts_check_version () {
   if ( $version != AMCHARTS_VERSION ) {
     
     // get numeric representation
-    $version = str_replace( '.', '', $version );
+    $version_parts = explode( '.', $version );
+    $version = array_shift( $version_parts );
+    while( sizeof( $version_parts ) ) {
+      $version .= str_pad( array_shift( $version_parts ), 2, '0', STR_PAD_LEFT );
+    }
 
     // the version does not match
     // run necessary checks
@@ -323,7 +327,7 @@ function amcharts_check_version () {
     $resources = amcharts_get_available_resources();
 
     // 1.0.8 and down
-    if ( $version <= 108 ) {
+    if ( $version <= 10008 ) {
 
       // populate gantt chart type defaults
       $settings['chart_types']['gantt'] = array(
@@ -336,8 +340,20 @@ function amcharts_check_version () {
     }
 
     // 1.0.9 and down
-    if ( $version <= 109 ) {
+    if ( $version <= 10009 ) {
       // refresh resource list (to include CSS files)
+      $settings['resources'] = amcharts_get_available_resources( $settings['location'], $settings['paths'] );
+    }
+
+    // 1.0.13 and down
+    if ( $version <= 10013 ) {
+      // migrate defaults from %CHART% to $CHART$
+      foreach( $settings['chart_types'] as $type => $type_data ) {
+        $settings['chart_types'][$type]['default_html'] = str_replace( '%CHART%', '$CHART$', $settings['chart_types'][$type]['default_html'] );
+        $settings['chart_types'][$type]['default_javascript'] = str_replace( '%CHART%', '$CHART$', $settings['chart_types'][$type]['default_javascript'] );
+      }
+
+      // refresh resource list
       $settings['resources'] = amcharts_get_available_resources( $settings['location'], $settings['paths'] );
     }
 
