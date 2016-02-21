@@ -127,12 +127,15 @@ function amcharts_shortcode ( $atts ) {
 
   // add data passed via shortcode
   $pass = array();
-  foreach ( $atts as $att ) {
+  foreach ( $atts as $att => $att_val ) {
+    if ( strpos( $att_val, '=' ) !== false ) {
+      list( $att, $att_val ) = explode( '=', $att_val );
+    }
     if ( 0 === strpos( $att , 'data-' ) ) {
-      list( $key, $val ) = explode( '=', $att );
-      $pass[ substr( $key, 5 ) ] = str_replace( '"', '', $val );
+      $pass[ substr( $att, 5 ) ] = str_replace( '"', '', $att_val );
     }
   }
+  
   if ( sizeof( $pass ) )
     $javascript = "AmCharts.wpChartData = " . json_encode( $pass ) . ";\n" . $javascript;
 
@@ -290,6 +293,7 @@ function amcharts_deactivate () {
  * Adding support for oEmbed Live Editor
  */
 
+wp_oembed_add_provider( 'https://live.amcharts.com/*', 'https://live.amcharts.com/oembed/' );
 wp_oembed_add_provider( 'http://live.amcharts.com/*', 'http://live.amcharts.com/oembed/' );
 
 /**

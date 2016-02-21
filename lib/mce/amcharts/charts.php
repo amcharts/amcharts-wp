@@ -89,14 +89,14 @@ wp_admin_css( 'wp-admin', true );
       <input type="text" value="" id="live-editor-url" placeholder="<?php _e( 'Enter a URL to a chart created in Live Editor', 'amcharts' ); ?>" class="widefat" />
     </p>
     <p class="description"><?php _e( 'Once you publish the chart in Live Editor, copy and paste it\'s URL into field above.', 'amcharts' ); ?></p>
-    <p class="description"><?php _e( 'I.e.: http://live.amcharts.com/NmU2Z/', 'amcharts' ); ?></p>
+    <p class="description"><?php _e( 'I.e.: https://live.amcharts.com/NmU2Z/', 'amcharts' ); ?></p>
     <p>
       <input type="text" value="" id="live-editor-width" placeholder="<?php _e( 'Width (default: 400px)', 'amcharts' ); ?>" class="fat" />
       <input type="text" value="" id="live-editor-height" placeholder="<?php _e( 'Height (default: 300px)', 'amcharts' ); ?>" class="fat" />
       <input type="button" id="live-editor-ok" value="<?php _e( 'Insert', 'amcharts' ); ?>" class="button button-primary" />
     </p>
     <p>
-      <input type="button" value="<?php _e( 'Open Live Editor', 'amcharts' ); ?>" onclick="window.open('http://live.amcharts.com/');" class="button" />
+      <input type="button" value="<?php _e( 'Open Live Editor', 'amcharts' ); ?>" onclick="window.open('https://live.amcharts.com/');" class="button" />
       <span class="description"><?php _e( 'This will open Live Editor in a new window', 'amcharts' ); ?></span>
     </p>
 
