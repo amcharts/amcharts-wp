@@ -130,9 +130,10 @@ function amcharts_shortcode ( $atts ) {
   foreach ( $atts as $att => $att_val ) {
     if ( is_int( $att ) ) {
       list( $att, $att_val ) = explode( '=', $att_val, 1 );
+      $att_val = str_replace( '"', '', $att_val );
     }
     if ( 0 === strpos( $att , 'data-' ) ) {
-      $pass[ substr( $att, 5 ) ] = str_replace( '"', '', $att_val );
+      $pass[ substr( $att, 5 ) ] = html_entity_decode( $att_val );
     }
   }
   
