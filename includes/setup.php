@@ -128,8 +128,8 @@ function amcharts_shortcode ( $atts ) {
   // add data passed via shortcode
   $pass = array();
   foreach ( $atts as $att => $att_val ) {
-    if ( strpos( $att_val, '=' ) !== false ) {
-      list( $att, $att_val ) = explode( '=', $att_val );
+    if ( is_int( $att ) ) {
+      list( $att, $att_val ) = explode( '=', $att_val, 1 );
     }
     if ( 0 === strpos( $att , 'data-' ) ) {
       $pass[ substr( $att, 5 ) ] = str_replace( '"', '', $att_val );
