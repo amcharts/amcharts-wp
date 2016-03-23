@@ -278,7 +278,7 @@ function amcharts_activate () {
     return;
   
   // set defaults
-  $settings = amcharts_get_defaults();
+  $settings = amcharts_get_defaults( true );
   
   // update options
   update_option( 'amcharts_options', $settings );
@@ -329,14 +329,22 @@ function amcharts_check_version () {
     // run necessary checks
     $settings = get_option( 'amcharts_options', array() );
     $chart_libs = amcharts_get_chart_type_libs();
-    $resources = amcharts_get_available_resources();
+
+    // refresh resource list
+    $settings[ 'resources' ] = amcharts_get_available_resources( $settings['location'], $settings['paths'] );
+
+    // check chart resource defaults
+    foreach( $settings['chart_types'] as $type => $type_data ) {
+      if ( $settings['chart_types'][$type]['default_resources'] == '' )
+        $settings['chart_types'][$type]['default_resources'] = amcharts_get_resources( $chart_libs[$type], $settings['resources'] );
+    }
 
     // 1.0.8 and down
     if ( $version <= 10008 ) {
 
       // populate gantt chart type defaults
       $settings['chart_types']['gantt'] = array(
-        'default_resources'   => amcharts_get_resources( $chart_libs['gantt'], $resources ),
+        'default_resources'   => amcharts_get_resources( $chart_libs['gantt'], $settings['resources'] ),
         'custom_resources'    => 0,
         'default_html'        => amcharts_get_default( 'gantt', 'html' ),
         'default_javascript'  => amcharts_get_default( 'gantt', 'javascript' )
@@ -357,9 +365,6 @@ function amcharts_check_version () {
         $settings['chart_types'][$type]['default_html'] = str_replace( '%CHART%', '$CHART$', $settings['chart_types'][$type]['default_html'] );
         $settings['chart_types'][$type]['default_javascript'] = str_replace( '%CHART%', '$CHART$', $settings['chart_types'][$type]['default_javascript'] );
       }
-
-      // refresh resource list
-      $settings['resources'] = amcharts_get_available_resources( $settings['location'], $settings['paths'] );
     }
 
     update_option( 'amcharts_options', $settings );

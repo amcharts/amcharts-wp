@@ -12,31 +12,43 @@ function amcharts_admin_menu() {
  * Returns default settings for the plugin
  */
 
-function amcharts_get_defaults () {
+function amcharts_get_defaults( $load_resources = false ) {
   $settings = array(
     'location'            => 'remote',
     'own'                 => '0',
     'paths'               => '',
     'wrap'                => '1',
-    'resources'           => amcharts_get_available_resources(),
+    'resources'           => '',
+    //'resources'           => amcharts_get_available_resources(),
+    // moving this on on plugin activation or update so that resource list
+    // is not requested every time
     'custom_resources'    => '',
     'chart_types'         => array()
   );
+
+  if ( $load_resources )
+    $settings['resources'] = amcharts_get_available_resources();
   
   $chart_libs = amcharts_get_chart_type_libs();
   foreach ( $chart_libs as $chart_type => $libs ) {
     $settings['chart_types'][$chart_type] = array(
-      'default_resources'   => amcharts_get_resources( $libs, $settings['resources'] ),
+      'default_resources'   => '',
+      //'default_resources'   => amcharts_get_resources( $libs, $settings['resources'] ),
+      // moving this on on plugin activation or update so that resource list
+      // is not requested every time
       'custom_resources'    => 0,
       'default_html'        => amcharts_get_default( $chart_type, 'html' ),
       'default_javascript'  => amcharts_get_default( $chart_type, 'javascript' )
     );
+
+    if ( $load_resources )
+      $settings['chart_types'][$chart_type]['default_resources'] = amcharts_get_resources( $libs, $settings['resources'] );
   }
   
   return $settings;
 }
 
-function amcharts_settings_show () {
+function amcharts_settings_show() {
   // check permissions
   if (!current_user_can( 'manage_options' ) )  {
     wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
@@ -61,6 +73,7 @@ function amcharts_settings_show () {
     $prev_location = $settings['location'];
     
     // get submited data
+    $settings['relative']           = isset( $_POST['relative'] ) && '1' == $_POST['relative'] ? '1' : '0';
     $settings['own']                = isset( $_POST['own'] ) && '1' == $_POST['own'] ? '1' : '0';
     $settings['wrap']               = isset( $_POST['wrap'] ) && '1' == $_POST['wrap'] ? '1' : '0';
     $settings['location']           = isset( $_POST['location'] ) ? trim( $_POST['location'] ) : 'remote';
@@ -84,7 +97,7 @@ function amcharts_settings_show () {
     
     // refresh built-in resources
     if ( ( $prev_location != $settings['location'] ) || ( isset( $_POST['refresh'] ) && '1' == $_POST['refresh'] ) ) {
-      $settings['resources'] = amcharts_get_available_resources( $settings['location'], $settings['paths'] );
+      $settings['resources'] = amcharts_get_available_resources( $settings['location'], $settings['paths'], $settings['relative'] );
       
       reset( $chart_type_libs );
       foreach ( $chart_type_libs as $chart_type => $libs ) {
@@ -142,6 +155,22 @@ function amcharts_settings_show () {
               /> <?php _e( 'Resources are stored locally ', 'amcharts' ); ?></label>
             </p>
             <p class="description"><?php _e( 'This allows you to load the libraries from the local server.', 'amcharts' ); ?></p>
+          </fieldset>
+        </td>
+      </tr>
+
+      <tr valign="top" id="amcharts-relative-urls-group" <?php
+        echo 'remote' == $settings['location'] ? 'style="display: none;"' : '';
+      ?>>
+        <th scope="row"><?php _e( 'Relative Resource URLs', 'amcharts' ); ?></th>
+        <td>
+          <fieldset>
+            <p>
+              <label><input type="checkbox" name="relative" value="1" id="amcharts-relative-urls" <?php
+                echo '1' == $settings['relative'] ? ' checked="checked"' : '';
+              ?> /> <?php _e( 'Use relative resources URLs, instead of full URLs', 'amcharts' ); ?></label>
+            </p>
+            <p class="description"><?php _e( 'NOTE: Changing this setting will not affect charts that are already created.', 'amcharts' ); ?></p>
           </fieldset>
         </td>
       </tr>

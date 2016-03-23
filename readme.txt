@@ -2,8 +2,8 @@
 Contributors: martynasma
 Tags: charts, maps, amcharts, ammap, javascript charts, javascript maps
 Requires at least: 3.0
-Tested up to: 4.4.2
-Stable tag: 1.0.17
+Tested up to: 4.5
+Stable tag: 1.0.18
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -105,6 +105,11 @@ You can then reference those passed variables in your chart code. I.e.:
 7. The chart shortcodes are replaced with the actual charts when page renders.
 
 == Changelog ==
+
+= 1.0.18 =
+* Fixed unnecessary loading of resource list from amcharts.com on every request
+* Introduced option to use relative resource URLs (available in Settings)
+* Remote resources now use "//" protocol prefix so that it inherits either http or https depending on what the website uses
 
 = 1.0.17 =
 * Decode values of "data-*"" attributes passed in from shorcode

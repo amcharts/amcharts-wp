@@ -2,8 +2,7 @@
 /**
  * Check if this is a new post being created
  */
-
-function amcharts_is_new_post () {
+function amcharts_is_new_post() {
 	global $pagenow;
 	return 'post-new.php' == $pagenow;
 }
@@ -11,8 +10,7 @@ function amcharts_is_new_post () {
 /**
  * Returns the list of available chart types
  */
-
-function amcharts_get_chart_types () {
+function amcharts_get_chart_types() {
 	return array(
 		'serial' 	=> __( 'Serial', 'amcharts' ),
 		'pie' 		=> __( 'Pie', 'amcharts' ),
@@ -29,8 +27,7 @@ function amcharts_get_chart_types () {
 /**
  * Returns the list of the charts and their default depenecies
  */
-
-function amcharts_get_chart_type_libs () {
+function amcharts_get_chart_type_libs() {
 	return array(
 		'serial' 	=> array( 'amcharts.js', 'serial.js' ),
 		'pie' 		=> array( 'amcharts.js', 'pie.js' ),
@@ -47,8 +44,7 @@ function amcharts_get_chart_type_libs () {
 /**
  * Strips slashes from submitted data
  */
-
-function amcharts_stripslashes ( $str ) {
+function amcharts_stripslashes( $str ) {
 	// if ( get_magic_quotes_gpc() )
 	// WP seems to add slashes regardless of the above setting
 	$str = stripslashes( $str );
@@ -58,8 +54,7 @@ function amcharts_stripslashes ( $str ) {
 /**
  * Returns unique chart slug
  */
-
-function amcharts_generate_slug ( $type = 'chart' ) {
+function amcharts_generate_slug( $type = 'chart' ) {
 	if ( ! $type )
 		$type = 'chart';
 	
@@ -88,20 +83,18 @@ function amcharts_generate_slug ( $type = 'chart' ) {
 /**
  * Splits up resources list into array
  */
-
-function amcharts_split_libs ( $resources ) {
+function amcharts_split_libs( $resources ) {
 	return preg_split( '/\s+/', trim ( $resources ) );
 }
 
 /**
  * Returns available resource files
  */
-
-function amcharts_get_available_resources ( $type = 'remote', $paths = '' ) {
+function amcharts_get_available_resources( $type = 'remote', $paths = '', $relative = false ) {
   $res = '';
   if ( 'local' == $type ) {
     $dirs = amcharts_split_libs( $paths );
-    
+
     // libraries
     $libs = array();
     foreach ( $dirs as $path ) {
@@ -119,6 +112,14 @@ function amcharts_get_available_resources ( $type = 'remote', $paths = '' ) {
     foreach ( $dirs as $path ) {
       $libs = array_merge( $libs, amcharts_get_resource_files_deep( ABSPATH . $path . 'plugins/', home_url( $path . 'plugins/' ) ) );
     }
+
+    // make URLs relative if necessary
+    if ( $relative ) {
+      reset( $libs );
+      foreach ( $libs as $i => $path ) {
+        $libs[$i] = amcharts_make_relative( $path );
+      }
+    }
     
     $res = implode( "\n", $libs );
   }
@@ -131,10 +132,16 @@ function amcharts_get_available_resources ( $type = 'remote', $paths = '' ) {
 }
 
 /**
+ * Strips the protocol/host part of the URL
+ */
+function amcharts_make_relative( $url ) {
+  return str_replace( site_url(), '', $url );
+}
+
+/**
  * Returns resource list that are required
  */
-
-function amcharts_get_resources ( $libs, $resources ) {
+function amcharts_get_resources( $libs, $resources ) {
   $res = array();
   foreach ( $libs as $lib ) {
     $matches = array();
@@ -149,7 +156,6 @@ function amcharts_get_resources ( $libs, $resources ) {
 /**
  * Loads the default for specific item
  */
-
 function amcharts_get_default ( $chart_type, $context ) {
   if ( $content = @file_get_contents( AMCHARTS_DIR . '/defaults/' . $chart_type . '-' . $context . '.txt' ) )
     return $content;
@@ -160,8 +166,7 @@ function amcharts_get_default ( $chart_type, $context ) {
 /**
  * Returns a list of JS files in a directory
  */
-
-function amcharts_get_resource_files ( $dir, $path = '' ) {
+function amcharts_get_resource_files( $dir, $path = '' ) {
   $res = array();
   if ( !file_exists( $dir ) )
     return $res;
@@ -177,8 +182,7 @@ function amcharts_get_resource_files ( $dir, $path = '' ) {
 /**
  * Returns a list of JS files in a direcory and it's subdirectories
  */
-
-function amcharts_get_resource_files_deep ( $dir, $path = '' ) {
+function amcharts_get_resource_files_deep( $dir, $path = '' ) {
   $res = array();
   if ( !file_exists( $dir ) )
     return $res;
