@@ -136,6 +136,9 @@ function amcharts_shortcode ( $atts ) {
       $pass[ substr( $att, 5 ) ] = html_entity_decode( $att_val );
     }
   }
+
+  // apply additional filters
+  $pass = apply_filters( 'amcharts_shortcode_data', $pass, $atts );
   
   if ( sizeof( $pass ) )
     $javascript = "AmCharts.wpChartData = " . json_encode( $pass ) . ";\n" . $javascript;
@@ -146,7 +149,8 @@ function amcharts_shortcode ( $atts ) {
     $javascript = "try {\n" . $javascript . "\n}\ncatch( err ) { console.log( err ); }";
   
   // enqueue resources
-  $libs = amcharts_split_libs( $resources );
+  $libs = amcharts_split_libs( apply_filters( 'amcharts_shortcode_resources', $resources, $atts ) );
+  $libs = apply_filters( 'amcharts_shortcode_libs', $libs, $atts );
   foreach ( $libs as $lib ) {
     if ( preg_match( '/\\.css/i', $lib ) )
       wp_enqueue_style( 'amcharts-external-' . md5( basename( $lib ) ), $lib, array(), AMCHARTS_VERSION );
@@ -155,9 +159,10 @@ function amcharts_shortcode ( $atts ) {
   }
   
   // enqueue JavaScript part
-  amcharts_enqueue_javascript( $javascript );
-  
-  return $html;
+  amcharts_enqueue_javascript( apply_filters( 'amcharts_shortcode_javascript', $javascript, $atts ) );
+
+  // return HTML
+  return apply_filters( 'amcharts_shortcode_html', $html, $atts );
 }
 
 
