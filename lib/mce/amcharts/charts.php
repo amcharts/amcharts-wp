@@ -145,8 +145,6 @@ wp_admin_css( 'wp-admin', true );
       if ( '1' == $settings['own'] ) {
         $paths = amcharts_split_libs( $settings['paths'] );
         $path = array_shift( $paths );
-        if ( '' == $path )
-          break;
         $path = home_url( $path );
         ?>
         embed += ' src="<?php echo $path; ?>" tkn="replaceDefault"';
