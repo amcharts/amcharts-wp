@@ -308,8 +308,9 @@ function amcharts_admin_head () {
 add_action( 'wp_ajax_amcharts_get_posts', 'amcharts_get_posts' );
 function amcharts_get_posts() {
 	$query = array(
-		'post_type'				=> 'amchart',
-		'posts_per_page'	=> 20
+		'post_type'					=> 'amchart',
+		'posts_per_page'		=> 20,
+		//'suppress_filters'	=> false
 	);
 	if ( '' != $_POST['query'] ) {
 		$query['s'] = $_POST['query'];
@@ -320,6 +321,32 @@ function amcharts_get_posts() {
 	}
 	?><ul id="results"><?php
 	$posts = get_posts( $query );
+
+	/**
+	 * Pre-process for WPML
+	 * Combine both default language and current language items
+	 */
+	if ( function_exists( 'icl_object_id' ) ) {
+		$newposts = array();
+		global $sitepress;
+		$default_language = $sitepress->get_current_language();
+		$current_language = $_POST['language'];
+		foreach( $posts as $post ) {
+			$args = array(
+				'element_id'		=> $post->ID,
+				'element_type'	=> 'amchart'
+			);
+			$details = apply_filters( 'wpml_element_language_details', null, $args );
+			if ( $details->language_code == $current_language ) {
+				$newposts[ $details->trid ] = $post;
+			}
+			elseif ( $details->language_code == $default_language && ! isset( $newposts[ $details->trid ] ) ) {
+				$newposts[ $details->trid ] = $post;
+			}
+		}
+		$posts = array_values( $newposts );
+	}
+
 	foreach( $posts as $post ) {
 		$id = $post->ID;
 		$slug = get_post_meta( $id, '_amcharts_slug', true );

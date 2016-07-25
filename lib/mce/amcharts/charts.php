@@ -75,7 +75,7 @@ wp_admin_css( 'wp-admin', true );
   }
 
 </style>
-<script type="text/javascript" src="jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="<?php echo plugin_dir_url( __FILE__ ); ?>jquery-1.10.2.min.js"></script>
 </head>
 <body>
   <div class="amcharts-tabs">
@@ -167,6 +167,9 @@ wp_admin_css( 'wp-admin', true );
       'action': 'amcharts_get_posts',
       'query': query
     };
+    <?php if ( isset( $_GET['l'] ) ) { ?>
+      data.language = '<?php echo esc_js( $_GET['l'] ); ?>';
+    <?php } ?>
     jQuery.post(ajaxurl, data, function(response) {
       jQuery('#results').html(response);
     });

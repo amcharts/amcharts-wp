@@ -102,9 +102,24 @@ function amcharts_shortcode ( $atts ) {
   
   // try loading by slug first
   if ( $chart = get_posts( array(
-      'post_type'       => 'amchart',
-      'fields'          => 'ids',
-      'posts_per_page'  => 1,
+      'post_type'         => 'amchart',
+      'fields'            => 'ids',
+      'posts_per_page'    => 1,
+      'suppress_filters'  => false,
+      'meta_query'      => array(
+        array(
+          'key'   => '_amcharts_slug',
+          'value' => $id,
+        )
+      )
+    ) ) ) {
+    $id = $chart[0];
+  }
+  // then by slug, but with filters disabled
+  elseif ( $chart = get_posts( array(
+      'post_type'         => 'amchart',
+      'fields'            => 'ids',
+      'posts_per_page'    => 1,
       'meta_query'      => array(
         array(
           'key'   => '_amcharts_slug',
