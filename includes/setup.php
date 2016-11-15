@@ -372,11 +372,6 @@ function amcharts_check_version () {
 
     }
 
-    // 1.0.9 and down
-    if ( $version <= 10009 ) {
-      // refresh resource list (to include CSS files)
-      $settings['resources'] = amcharts_get_available_resources( $settings['location'], $settings['paths'] );
-    }
 
     // 1.0.13 and down
     if ( $version <= 10013 ) {
@@ -385,6 +380,12 @@ function amcharts_check_version () {
         $settings['chart_types'][$type]['default_html'] = str_replace( '%CHART%', '$CHART$', $settings['chart_types'][$type]['default_html'] );
         $settings['chart_types'][$type]['default_javascript'] = str_replace( '%CHART%', '$CHART$', $settings['chart_types'][$type]['default_javascript'] );
       }
+    }
+
+    // 1.1.1 and down
+    if ( $version <= 10101 ) {
+      // refresh resource list (to include CSS and theme files)
+      $settings['resources'] = amcharts_get_available_resources( $settings['location'], $settings['paths'] );
     }
 
     update_option( 'amcharts_options', $settings );

@@ -113,6 +113,12 @@ function amcharts_get_available_resources( $type = 'remote', $paths = '', $relat
       $libs = array_merge( $libs, amcharts_get_resource_files_deep( ABSPATH . $path . 'plugins/', home_url( $path . 'plugins/' ) ) );
     }
 
+    // themes
+    reset( $dirs );
+    foreach ( $dirs as $path ) {
+      $libs = array_merge( $libs, amcharts_get_resource_files_deep( ABSPATH . $path . 'themes/', home_url( $path . 'themes/' ) ) );
+    }
+
     // make URLs relative if necessary
     if ( $relative ) {
       reset( $libs );
