@@ -62,12 +62,12 @@ function amcharts_resources_box ( $post ) {
 	$libs = array_merge( $libs, amcharts_split_libs( $settings['custom_resources'] ) );
 	
 	// new?
-	if ( amcharts_is_new_post() && $_GET['chart_type'] ) {
+	if ( amcharts_is_new_post() && ! empty( $_GET['chart_type'] ) ) {
 		$post_resources = $settings['chart_types'][$_GET['chart_type']]['default_resources'];
 	}
 	?>
 
-	<fieldset class="amcharts-resource-group">	
+	<fieldset class="amcharts-resource-group">
 		<p>
 			<textarea name="resources" id="amcharts-resources" class="widefat amcharts-resources"><?php echo esc_textarea( $post_resources ); ?></textarea>
 		</p>
@@ -100,7 +100,7 @@ function amcharts_html_box ( $post ) {
 	$settings = get_option( 'amcharts_options', amcharts_get_defaults() );
 	
 	// new?
-	if ( amcharts_is_new_post() && $_GET['chart_type'] ) {
+	if ( amcharts_is_new_post() && ! empty( $_GET['chart_type'] ) ) {
 		$html = $settings['chart_types'][$_GET['chart_type']]['default_html'];
 	}
 	?>
@@ -131,7 +131,7 @@ function amcharts_javascript_box ( $post ) {
 	$settings = get_option( 'amcharts_options', amcharts_get_defaults() );
 	
 	// new?
-	if ( amcharts_is_new_post() && $_GET['chart_type'] ) {
+	if ( amcharts_is_new_post() && ! empty( $_GET['chart_type'] ) ) {
 		$javascript = $settings['chart_types'][$_GET['chart_type']]['default_javascript'];
 	}
 	?>
@@ -188,7 +188,7 @@ function amcharts_misc_box ( $post ) {
 	
 	// new?
 	if ( amcharts_is_new_post() ) {
-		$slug = amcharts_generate_slug( $_GET['chart_type'] );
+		$slug = amcharts_generate_slug( empty( $_GET['chart_type'] ) ? '' : $_GET['chart_type'] );
 	}
 	else {
 		$slug = get_post_meta( $post->ID, '_amcharts_slug', true );
