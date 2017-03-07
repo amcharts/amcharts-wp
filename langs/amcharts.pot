@@ -3,14 +3,14 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: amCharts: Charts and Maps\n"
-"POT-Creation-Date: 2016-03-23 06:57+0200\n"
-"PO-Revision-Date: 2015-11-20 11:24+0200\n"
-"Last-Translator: Martynas Majeris <martynasma@gmail.com>\n"
-"Language-Team: Martynas Majeris <martynasma@gmail.com>\n"
+"POT-Creation-Date: 2017-03-07 12:08+0200\n"
+"PO-Revision-Date: 2017-03-07 12:08+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.7\n"
+"X-Generator: Poedit 1.8.12\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-WPHeader: amcharts.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -100,11 +100,11 @@ msgstr ""
 msgid "Are you sure? This operation cannot be undone."
 msgstr ""
 
-#: includes/editing.php:316
+#: includes/editing.php:317
 msgid "Search results"
 msgstr ""
 
-#: includes/editing.php:319
+#: includes/editing.php:320
 msgid "Recent charts"
 msgstr ""
 
@@ -319,52 +319,42 @@ msgid ""
 msgstr ""
 
 #: includes/setup.php:15 includes/setup.php:25
-msgctxt "amcharts"
 msgid "Charts &amp; Maps"
 msgstr ""
 
 #: includes/setup.php:16
-msgctxt "amcharts"
 msgid "Chart or Map"
 msgstr ""
 
 #: includes/setup.php:17
-msgctxt "amcharts"
 msgid "Add New"
 msgstr ""
 
 #: includes/setup.php:18
-msgctxt "amcharts"
 msgid "Add New Chart or Map"
 msgstr ""
 
 #: includes/setup.php:19
-msgctxt "amcharts"
 msgid "Edit Chart or Map"
 msgstr ""
 
 #: includes/setup.php:20
-msgctxt "amcharts"
 msgid "New Chart or Map"
 msgstr ""
 
 #: includes/setup.php:21
-msgctxt "amcharts"
 msgid "View Chart or Map"
 msgstr ""
 
 #: includes/setup.php:22
-msgctxt "amcharts"
 msgid "Search Charts &amp; Maps"
 msgstr ""
 
 #: includes/setup.php:23
-msgctxt "amcharts"
 msgid "No charts or maps found"
 msgstr ""
 
 #: includes/setup.php:24
-msgctxt "amcharts"
 msgid "No charts or maps found in Trash"
 msgstr ""
 
@@ -469,5 +459,5 @@ msgid "amCharts"
 msgstr ""
 
 #. Author URI of the plugin/theme
-msgid "http://www.amcharts.com/"
+msgid "https://www.amcharts.com/"
 msgstr ""

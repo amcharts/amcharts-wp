@@ -12,17 +12,17 @@ function amcharts_register_cpt() {
   // --------------------------------------------------------------------------
   
   $labels = array( 
-    'name'                => _x( 'Charts &amp; Maps', 'amcharts' ),
-    'singular_name'       => _x( 'Chart or Map', 'amcharts' ),
-    'add_new'             => _x( 'Add New', 'amcharts' ),
-    'add_new_item'        => _x( 'Add New Chart or Map', 'amcharts' ),
-    'edit_item'           => _x( 'Edit Chart or Map', 'amcharts' ),
-    'new_item'            => _x( 'New Chart or Map', 'amcharts' ),
-    'view_item'           => _x( 'View Chart or Map', 'amcharts' ),
-    'search_items'        => _x( 'Search Charts &amp; Maps', 'amcharts' ),
-    'not_found'           => _x( 'No charts or maps found', 'amcharts' ),
-    'not_found_in_trash'  => _x( 'No charts or maps found in Trash', 'amcharts' ),
-    'menu_name'           => _x( 'Charts &amp; Maps', 'amcharts' ),
+    'name'                => __( 'Charts &amp; Maps', 'amcharts' ),
+    'singular_name'       => __( 'Chart or Map', 'amcharts' ),
+    'add_new'             => __( 'Add New', 'amcharts' ),
+    'add_new_item'        => __( 'Add New Chart or Map', 'amcharts' ),
+    'edit_item'           => __( 'Edit Chart or Map', 'amcharts' ),
+    'new_item'            => __( 'New Chart or Map', 'amcharts' ),
+    'view_item'           => __( 'View Chart or Map', 'amcharts' ),
+    'search_items'        => __( 'Search Charts &amp; Maps', 'amcharts' ),
+    'not_found'           => __( 'No charts or maps found', 'amcharts' ),
+    'not_found_in_trash'  => __( 'No charts or maps found in Trash', 'amcharts' ),
+    'menu_name'           => __( 'Charts &amp; Maps', 'amcharts' ),
   );
 
   $args = array( 

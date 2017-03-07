@@ -10,8 +10,10 @@ Author: amCharts
 Version: 1.1.3
 Author URI: https://www.amcharts.com/
 License: GPL2
+Text Domain: amcharts
+Domain Path: /langs
 
-Copyright 2013 Martynas Majeris (email : martynas@amcharts.com)
+Copyright 2013-2017 Martynas Majeris (email : martynas@amcharts.com)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License, version 2, as 

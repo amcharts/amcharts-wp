@@ -347,7 +347,7 @@ function amcharts_settings_show() {
                 <textarea name="chart_types[<?php echo $chart_type; ?>][default_html]" class="widefat code code-html"><?php echo esc_textarea( $settings['chart_types'][$chart_type]['default_html'] ); ?></textarea>
               </p>
               <p>
-                <p class="description"><?php _e( 'Enter the default HTML to populate new entries with. Use <strong>$CHART$</strong> symbol for safe and unique chart ids and variables.' ); ?></p>
+                <p class="description"><?php _e( 'Enter the default HTML to populate new entries with. Use <strong>$CHART$</strong> symbol for safe and unique chart ids and variables.', 'amcharts' ); ?></p>
               </p>
               
               <h4><?php _e( 'JavaScript', 'amcharts' ); ?></h4>
@@ -356,7 +356,7 @@ function amcharts_settings_show() {
                 <textarea name="chart_types[<?php echo $chart_type; ?>][default_javascript]" class="widefat code code-javascript"><?php echo esc_textarea( $settings['chart_types'][$chart_type]['default_javascript'] ); ?></textarea>
               </p>
               <p>
-                <p class="description"><?php _e( 'Enter the default JavaScript to populate new entries with. Use <strong>$CHART$</strong> symbol for safe and unique chart ids and variables.' ); ?></p>
+                <p class="description"><?php _e( 'Enter the default JavaScript to populate new entries with. Use <strong>$CHART$</strong> symbol for safe and unique chart ids and variables.', 'amcharts' ); ?></p>
               </p>
               
             </div><?php

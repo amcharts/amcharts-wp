@@ -1,0 +1,562 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: amCharts: Charts and Maps\n"
+"POT-Creation-Date: 2017-03-07 12:01+0200\n"
+"PO-Revision-Date: 2017-03-07 12:04+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: lt_LT\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.12\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-WPHeader: amcharts.php\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n"
+"%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: includes/editing.php:11 includes/settings.php:127 includes/settings.php:300
+msgid "Resources"
+msgstr "Ištekliai"
+
+#: includes/editing.php:18 includes/settings.php:345
+msgid "HTML"
+msgstr "HTML"
+
+#: includes/editing.php:25 includes/settings.php:353
+msgid "JavaScript"
+msgstr "JavaScript"
+
+#: includes/editing.php:32
+msgid "Apply default code"
+msgstr "Taikyti numatytąjį kodą"
+
+#: includes/editing.php:39
+msgid "Chart tools"
+msgstr "Grafikų įrankiai"
+
+#: includes/editing.php:76 includes/settings.php:321
+msgid "Select a resource"
+msgstr "Pasirinkite išteklius"
+
+#: includes/editing.php:83 includes/settings.php:328
+msgid "Add"
+msgstr "Pridėti"
+
+#: includes/editing.php:113 includes/editing.php:144
+msgid ""
+"Please use the following code <strong>$CHART$</strong> in place of the chart "
+"IDs or variables. It will be replaced with the proper, safe and unique chart "
+"ID when generating the page"
+msgstr ""
+"Naudokite kodą <strong>$CHART$</strong> vietoj grafiko identifikatorių arba "
+"kintamųjų. Šis kodas bus pakeistas unikaliu grafiko identifikatoriumi, kas "
+"padės išvengti konfliktų."
+
+#: includes/editing.php:162
+msgid "Select a chart type to apply"
+msgstr "Pasirinkite, kurį grafiko tipą norite pritaikyti"
+
+#: includes/editing.php:167
+msgid "Apply"
+msgstr "Taikyti"
+
+#: includes/editing.php:171
+msgid ""
+"ATTENTION! When you select a chart type above and click \"Apply\", the "
+"content in Resources, HTML and JavaScript fields will be overwritten with "
+"the defaults set by the website administrator."
+msgstr ""
+"DĖMESIO! Kai pasirinksite grafiko tipą ir paspausite \"Taikyti\", langelių "
+"\"Ištekliai\", \"HTML\" ir \"JavaScript\" turinys bus pakeistas "
+"numatytaisiais."
+
+#: includes/editing.php:200
+msgid "Slug"
+msgstr "Indentifikatorius"
+
+#: includes/editing.php:202
+msgid ""
+"Use this field to enter a user-friendly slug (ID) for your chart that can be "
+"used in shortcodes, i.e. [amcharts id=\"chart-1\"]"
+msgstr ""
+"Naudokite šį lauką patogiam grafiko identifikatoriui įvesite. Vėliau jį "
+"galėsite naudoti trumpiniuose, pvz. [amcharts id=\"chart-1\"]"
+
+#: includes/editing.php:205
+msgid "Preview chart or map"
+msgstr "Peržiūrėti grafiką arba žemėlapį"
+
+#: includes/editing.php:248
+msgid "Shortcode"
+msgstr "Trumpasis kodas"
+
+#: includes/editing.php:294
+msgid "Insert chart or map"
+msgstr "Įterpti grafiką ar žemėlapį"
+
+#: includes/editing.php:295 lib/mce/amcharts/charts.php:22
+msgid "Select a chart or map to insert"
+msgstr "Pasirinkite grafiką ar žemėlapį, kurį norėtumėte įterpti"
+
+#: includes/editing.php:296
+msgid "Are you sure? This operation cannot be undone."
+msgstr "Ar tikrai? Šis veiksmas neatšaukiamas."
+
+#: includes/editing.php:317
+msgid "Search results"
+msgstr "Paieškos rezultatai"
+
+#: includes/editing.php:320
+msgid "Recent charts"
+msgstr "Naujausi grafikai"
+
+#: includes/preview.php:28
+msgid "amCharts Preview"
+msgstr "amCharts peržiūra"
+
+#: includes/settings.php:54
+msgid "You do not have sufficient permissions to access this page."
+msgstr "Jūs neturite pakankamai teisių patekti į šį puslapį."
+
+#: includes/settings.php:112
+msgid "Settings were successfully saved!"
+msgstr "Nustatymai sėkmingai išsaugoti!"
+
+#: includes/settings.php:118
+msgid "amCharts: Settings"
+msgstr "amCharts: Nustatymai"
+
+#: includes/settings.php:134
+msgid "Resource Storage"
+msgstr "Išteklių vieta"
+
+#: includes/settings.php:140
+msgid "Resources are stored remotely "
+msgstr "Ištekliai yra saugomi kitame serveryje"
+
+#: includes/settings.php:142
+msgid ""
+"The free versions of libraries will be loaded from www.amcharts.com. These "
+"are fully functional but will show a small branding link on charts or maps."
+msgstr ""
+"Nemokama amCharts bibliotekos versija bus kraunama iš www.amcharts.com. Šios "
+"bibliotekos yra pilnai funkcionalios, tačiau rodys mažą amCharts nuorodą "
+"kampe."
+
+#: includes/settings.php:143
+msgid ""
+"Want a link-free version? <a href=\"http://www.amcharts.com/online-store/\" "
+"target=\"_blank\">Purchase a commercial version</a> and help the development "
+"of this product as well as increase your karma points in the process."
+msgstr ""
+"Norite versijos be reklaminės nuorodos? <a href=\"http://www.amcharts.com/"
+"online-store/\" target=\"_blank\">Įsigykite komercinę versiją</a> ir "
+"prisidėkite prie šio puikaus produkto kūrimo."
+
+#: includes/settings.php:155
+msgid "Resources are stored locally "
+msgstr "Ištekliai laikomi šiame serveryje"
+
+#: includes/settings.php:157
+msgid "This allows you to load the libraries from the local server."
+msgstr "Šis nustatymas leis amCharts bibliotekas krauti iš šito serverio."
+
+#: includes/settings.php:165
+msgid "Relative Resource URLs"
+msgstr "Santykiniai išteklių URL"
+
+#: includes/settings.php:171
+msgid "Use relative resources URLs, instead of full URLs"
+msgstr "Naudoti santykinius išteklių URL, o ne pilną URL"
+
+#: includes/settings.php:173
+msgid ""
+"NOTE: Changing this setting will not affect charts that are already created."
+msgstr ""
+"DĖMESIO: Šio nustatymo pakeitimas neįtakos anksčiau išsaugotų grafikų ar "
+"žemėlapių."
+
+#: includes/settings.php:181
+msgid "Live Editor Integration"
+msgstr "Integracija su Live Editor"
+
+#: includes/settings.php:187
+msgid "Use local amCharts libraries for Live Editor-hosted charts"
+msgstr ""
+"Naudoti šiame serveryje esančias amCharts bibliotekas Live Editor grafikams"
+
+#: includes/settings.php:189
+msgid ""
+"If you want to display Live Editor-created charts without branding link:"
+msgstr ""
+"Jei norite Live Editor grafikus rodyti be reklaminės amCharts nuorodos:"
+
+#: includes/settings.php:190
+msgid "Install commercial version of amCharts libraries."
+msgstr "Įdiekite komercines amCharts bibliotekų versijas."
+
+#: includes/settings.php:191
+msgid "Check \"Resources are stored locally\" above."
+msgstr "Pažymėkite aukščiau esantį \"Ištekliai laikomi šiame serveryje\"."
+
+#: includes/settings.php:192
+msgid ""
+"You may need to also click \"Find them for me\" button under \"Local Paths\"."
+msgstr ""
+"Gali reikėti paspausti \"Raskite juos\" mygtuką, esantį po \"Vietinės "
+"direktorijos\" laukeliu."
+
+#: includes/settings.php:193
+msgid "Check \"Use local amCharts libraries\" above."
+msgstr "Pažymėkite aukščiau esantį \"Naudoti vietines amCharts bibliotekas\"."
+
+#: includes/settings.php:199
+msgid "Error Handling"
+msgstr "Klaidų valdymas"
+
+#: includes/settings.php:205
+msgid "Use exception handling on chart and map code (recommended)"
+msgstr ""
+"Įvilkti grafikų ir žemėlapių kodą į \"išimtis\" (exception). "
+"(rekomenduotinas nustatymas)"
+
+#: includes/settings.php:207
+msgid ""
+"If checked, the code for charts and maps will be wrapped with exception "
+"handling code (try / catch)."
+msgstr ""
+"Jei pažymėsite šį nustatymą, grafikų ir žemėlapių kodas bus įvilktas į "
+"(try / catch) klaidų išimčių kodą."
+
+#: includes/settings.php:208
+msgid ""
+"This will make sure a faulty code does not prevent other JavaScript on the "
+"same page executing properly."
+msgstr ""
+"Tai padės užtikrinti, kad klaidingas kodas viename grafike neužkirs kelio "
+"tolimesniam puslapio JavaScript vykdymui."
+
+#: includes/settings.php:217
+msgid "Local Paths"
+msgstr "Vietinės direktorijos"
+
+#: includes/settings.php:218
+msgid ""
+"Enter paths to your amCharts folders. Separate them by line breaks. The "
+"paths must be relative to your web root."
+msgstr ""
+"Nurodykite direktorijas, kuriose laikote amCharts failus. Kiekvieną "
+"direktoriją pradėkite naujoje eilutėje. Direktorijos turi būti nurodomos "
+"santykinai jūsų interneto svetainės pagrindinei direktorijai."
+
+#: includes/settings.php:227
+msgid ""
+"If you are not sure what to do, just unzip the amCharts archive you have "
+"downloaded and put into some directory under your web root. Then click "
+"\"Find them for me\"."
+msgstr ""
+"Jeigu nesate tikra(s), ką čia reikėtų daryti, tiesiog išarchyvuokite "
+"atsisiųstą amCharts ZIP failą į kokią nors direktoriją savo web serveryje. "
+"Tą padarę, spustelkite \"Raskite juos\" mygtuką."
+
+#: includes/settings.php:230
+msgid "Find them for me"
+msgstr "Raskite juos"
+
+#: includes/settings.php:232
+msgid "amCharts library was not found on your server"
+msgstr "Šiame serveryje neradome jokių amCharts bibliotekų."
+
+#: includes/settings.php:240
+msgid "Resource List"
+msgstr "Išteklių sąrašas"
+
+#: includes/settings.php:241
+msgid ""
+"This is a list of resources available for use. You will be able to select "
+"them while creating charts or maps."
+msgstr ""
+"Tai yra naudotinų išteklių sąrašas. Juos galėsite pasirinkti kurdami "
+"grafikus ar žemėlapius."
+
+#: includes/settings.php:249
+msgid "Refresh the list"
+msgstr "Atnaujinti sąrašą"
+
+#: includes/settings.php:250
+msgid "Attention! Pressing this button will save current settings."
+msgstr "Dėmesio! Paspaudus šį mygtuką, nustatymai bus išsaugoti."
+
+#: includes/settings.php:258
+msgid "Custom Resources"
+msgstr "Papildomi ištekliai"
+
+#: includes/settings.php:259
+msgid ""
+"Add your own resources here. Full or relative URLs (we include them the way "
+"you have them here). Separate by line break."
+msgstr ""
+"Šia galite pridėti savo nuosavus papildomus išteklius. Naudokite pilnus ar "
+"santykinius URL (mes juos įtrauksime į kodą taip, kaip nurodyta). Kiekvieną "
+"išteklių pradėkite naujoje eilutėje."
+
+#: includes/settings.php:272
+msgid "Defaults"
+msgstr "Numatytos reikšmės"
+
+#: includes/settings.php:278
+msgid ""
+"This section allows setting default resources, HTML and JavaScript code per "
+"chart/map type."
+msgstr ""
+"Šiame skyriuje kiekvienam grafiko/žemėlapio tipui galėsite nustatyti "
+"numatytasias išteklių, HTML ir JavaScript laukelių reikšmes."
+
+#: includes/settings.php:279
+msgid ""
+"When creating new chart or map entry, you will be able to select from one of "
+"these presets."
+msgstr ""
+"Kuriant naują grafiką ar žemėlapį, galėsite pasirinkti vieną iš šių "
+"numatytųjų nustatymų."
+
+#: includes/settings.php:304
+msgid ""
+"We did not find libraries required for this chart type in your local storage."
+msgstr ""
+"Jūsų serveryje neradome bibliotekų, reikalingų šio grafiko tipo rodymui."
+
+#: includes/settings.php:305
+msgid ""
+"Make sure you hit the \"Refresh the list\" button higher on this page when "
+"you install them."
+msgstr ""
+"Būtinai paspauskite aukščiau esantį mygtuką \"Atnaujinti sąrašą\" po to, kai "
+"jas įdiegsite."
+
+#: includes/settings.php:337
+msgid "I want to manage resource list myself"
+msgstr "Aš pats noriu valdyti išteklių sąrašą"
+
+#: includes/settings.php:341
+msgid ""
+"If the above box unchecked, plugin will manage required resources and their "
+"urls for you. If this is checked, you're on your own ;)"
+msgstr ""
+"Jei nuimsite žymę nuo aukščiau esančio laukelio, šis įskiepis pats valdys "
+"reikalingų išteklių sąrašus ir jų URL. Jei laukelis pažymėtas - už resursus "
+"liekate atsakingi jūs ;)"
+
+#: includes/settings.php:350
+msgid ""
+"Enter the default HTML to populate new entries with. Use <strong>$CHART$</"
+"strong> symbol for safe and unique chart ids and variables."
+msgstr ""
+"Įveskite numatytąjį HTML, kuris bus naudojamas kuriant naujus įrašus. "
+"Naudokite <strong>$CHART$</strong> ten, kur norite, kad būtų sugeneruotas "
+"unikalus ir saugus identifikatorius."
+
+#: includes/settings.php:359
+msgid ""
+"Enter the default JavaScript to populate new entries with. Use <strong>$CHART"
+"$</strong> symbol for safe and unique chart ids and variables."
+msgstr ""
+"Įveskite numatytąjį JavaScript, kuris bus naudojamas kuriant naujus įrašus. "
+"Naudokite <strong>$CHART$</strong> ten, kur norite, kad būtų sugeneruotas "
+"unikalus ir saugus identifikatorius."
+
+#: includes/setup.php:15 includes/setup.php:25
+msgid "Charts &amp; Maps"
+msgstr "Grafikai ir žemėlapiai"
+
+#: includes/setup.php:16
+msgid "Chart or Map"
+msgstr "Grafikas ar žemėlapis"
+
+#: includes/setup.php:17
+msgid "Add New"
+msgstr "Pridėti naują"
+
+#: includes/setup.php:18
+msgid "Add New Chart or Map"
+msgstr "Pridėti naują grafiką ar žemėlapį"
+
+#: includes/setup.php:19
+msgid "Edit Chart or Map"
+msgstr "Redaguoti grafiką ar žemėlapį"
+
+#: includes/setup.php:20
+msgid "New Chart or Map"
+msgstr "Naujas grafikas ar žemėlapis"
+
+#: includes/setup.php:21
+msgid "View Chart or Map"
+msgstr "Peržiūrėti grafiką ar žemėlapį"
+
+#: includes/setup.php:22
+msgid "Search Charts &amp; Maps"
+msgstr "Ieškoti tarp grafikų ir žemėlapių"
+
+#: includes/setup.php:23
+msgid "No charts or maps found"
+msgstr "Neradome nei vieno grafiko ar žemėlapio"
+
+#: includes/setup.php:24
+msgid "No charts or maps found in Trash"
+msgstr "Šiukšliadėžėje neradome nei vieno grafiko ar žemėlapio"
+
+#: includes/utils.php:15
+msgid "Serial"
+msgstr ""
+
+#: includes/utils.php:16
+msgid "Pie"
+msgstr ""
+
+#: includes/utils.php:17
+msgid "XY"
+msgstr ""
+
+#: includes/utils.php:18
+msgid "Funnel"
+msgstr ""
+
+#: includes/utils.php:19
+msgid "Radar"
+msgstr ""
+
+#: includes/utils.php:20
+msgid "Gauge"
+msgstr ""
+
+#: includes/utils.php:21
+msgid "Gantt"
+msgstr ""
+
+#: includes/utils.php:22
+msgid "Stock"
+msgstr ""
+
+#: includes/utils.php:23
+msgid "Map"
+msgstr ""
+
+#: lib/mce/amcharts/charts.php:83
+msgid "Local Charts"
+msgstr "Vietiniai grafikai"
+
+#: lib/mce/amcharts/charts.php:84
+msgid "Live Editor"
+msgstr "Live Editor"
+
+#: lib/mce/amcharts/charts.php:89
+msgid "Enter a URL to a chart created in Live Editor"
+msgstr "Įveskite nuorodą Live Editor sukurto grafiko"
+
+#: lib/mce/amcharts/charts.php:91
+msgid ""
+"Once you publish the chart in Live Editor, copy and paste it's URL into "
+"field above."
+msgstr ""
+"Po to, kai publikuosite grafiką Live Editor, nukopijuokite jo URL į aukščiau "
+"esantį laukelį."
+
+#: lib/mce/amcharts/charts.php:92
+msgid "I.e.: https://live.amcharts.com/NmU2Z/"
+msgstr "Pvz.: https://live.amcharts.com/NmU2Z/"
+
+#: lib/mce/amcharts/charts.php:94
+msgid "Width (default: 400px)"
+msgstr "Plotis (numatytas: 400px)"
+
+#: lib/mce/amcharts/charts.php:95
+msgid "Height (default: 300px)"
+msgstr "Aukštis (numatytas: 300px)"
+
+#: lib/mce/amcharts/charts.php:96
+msgid "Insert"
+msgstr "Įterpti"
+
+#: lib/mce/amcharts/charts.php:99
+msgid "Open Live Editor"
+msgstr "Atidaryti Live Editor"
+
+#: lib/mce/amcharts/charts.php:100
+msgid "This will open Live Editor in a new window"
+msgstr "Paspaudus, bus atidarytas naujas langas su Live Editor"
+
+#: lib/mce/amcharts/charts.php:105
+msgid "Start typing to search"
+msgstr "Pradėkite rašyti, kad ieškotume"
+
+#: lib/mce/amcharts/charts.php:134
+msgid "Please enter a chart URL"
+msgstr "Įveskite grafiko nuorodą (URL)"
+
+#. Plugin Name of the plugin/theme
+msgid "amCharts: Charts and Maps"
+msgstr "amCharts: Charts and Maps"
+
+#. Description of the plugin/theme
+msgid ""
+"Use this plugin to easily add interactive charts and maps using amChart's "
+"JavaScript Charts and JavaScript Maps products"
+msgstr ""
+"Naudokite šį įskiepį, jei norite lengvai pagyvinti savo interneto svetainę "
+"interaktyviais grafikais ar žemėlapiais, naudojant amCharts JavaScript "
+"Charts ar JavaScript Maps produktus"
+
+#. Author of the plugin/theme
+msgid "amCharts"
+msgstr "amCharts"
+
+#. Author URI of the plugin/theme
+msgid "https://www.amcharts.com/"
+msgstr "https://www.amcharts.com/"
+
+#~ msgctxt "amcharts"
+#~ msgid "Charts &amp; Maps"
+#~ msgstr "Grafikai ir žemėlapiai"
+
+#~ msgctxt "amcharts"
+#~ msgid "Chart or Map"
+#~ msgstr "Grafikas ar žemėlapis"
+
+#~ msgctxt "amcharts"
+#~ msgid "Add New"
+#~ msgstr "Pridėti naują"
+
+#~ msgctxt "amcharts"
+#~ msgid "Add New Chart or Map"
+#~ msgstr "Pridėti naują grafiką ar žemėlapį"
+
+#~ msgctxt "amcharts"
+#~ msgid "Edit Chart or Map"
+#~ msgstr "Redaguoti grafiką ar žemėlapį"
+
+#~ msgctxt "amcharts"
+#~ msgid "New Chart or Map"
+#~ msgstr "Naujas grafikas ar žemėlapis"
+
+#~ msgctxt "amcharts"
+#~ msgid "View Chart or Map"
+#~ msgstr "Peržiūrėti grafiką ar žemėlapį"
+
+#~ msgctxt "amcharts"
+#~ msgid "Search Charts &amp; Maps"
+#~ msgstr "Ieškoti tarp grafikų ir žemėlapių"
+
+#~ msgctxt "amcharts"
+#~ msgid "No charts or maps found"
+#~ msgstr "Neradome nei vieno grafiko ar žemėlapio"
+
+#~ msgctxt "amcharts"
+#~ msgid "No charts or maps found in Trash"
+#~ msgstr "Šiukšliadėžėje neradome nei vieno grafiko ar žemėlapio"
