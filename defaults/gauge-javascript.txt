@@ -28,5 +28,5 @@ setInterval( randomValue, 2000 );
 // set random value
 function randomValue() {
   var value = Math.round( Math.random() * 240 );
-  gaugeChart.arrows[ 0 ].setValue( value );
+  $CHART$.arrows[ 0 ].setValue( value );
 }
