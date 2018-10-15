@@ -27,7 +27,7 @@ function amcharts_register_cpt() {
 
   $args = array( 
     'labels'              => $labels,
-    'menu_icon'           => AMCHARTS_BASE_URL.'/images/icon_charts2.png',
+    'menu_icon'           => 'dashicons-chart-pie',
     'hierarchical'        => false,
     'supports'            => array( 'title' ),
     'taxonomies'          => array( ),
@@ -336,8 +336,8 @@ add_action( 'plugins_loaded', 'amcharts_check_version' );
 function amcharts_check_version () {
   
   $version = get_option( 'amcharts_version', '1.0.0' );
-  if ( $version != AMCHARTS_VERSION ) {
-    
+  if ( $version != AMCHARTS_VERSION && $version != '1.0.0' ) {
+
     // get numeric representation
     $version_parts = explode( '.', $version );
     $version = array_shift( $version_parts );
@@ -348,7 +348,7 @@ function amcharts_check_version () {
     // the version does not match
     // run necessary checks
     $settings = get_option( 'amcharts_options', array() );
-    $chart_libs = amcharts_get_chart_type_libs();
+    $chart_libs = amcharts_get_chart_type_libs('3');
 
     // refresh resource list
     $settings[ 'resources' ] = amcharts_get_available_resources( $settings['location'], $settings['paths'] );
@@ -387,6 +387,18 @@ function amcharts_check_version () {
       // refresh resource list (to include CSS and theme files)
       $settings['resources'] = amcharts_get_available_resources( $settings['location'], $settings['paths'] );
     }
+
+    // 1.1.6 and down
+    if ( $version <= 10106 ) {
+      // set version of amCharts used
+      $settings['version'] = '3';
+    }
+
+    // Anything up to 1.1.6 was for amCharts 3, hence us assuming v3 in all
+    // of the above code. Starting with 1.1.7 we're supporting both v3 and v4,
+    // so any updates past this point will have to check and take into account
+    // that any of the versions could have been active before.
+    // ...
 
     update_option( 'amcharts_options', $settings );
 

@@ -14,7 +14,9 @@ function amcharts_admin_menu() {
 
 function amcharts_get_defaults( $load_resources = false ) {
   $settings = array(
+    'version'             => '4',
     'location'            => 'remote',
+    'relative'            => '0',
     'own'                 => '0',
     'paths'               => '',
     'wrap'                => '1',
@@ -26,10 +28,19 @@ function amcharts_get_defaults( $load_resources = false ) {
     'chart_types'         => array()
   );
 
-  if ( $load_resources )
-    $settings['resources'] = amcharts_get_available_resources();
+  if ( $load_resources ) {
+    $settings['resources'] = amcharts_get_available_resources(
+      $settings['location'],
+      $settings['paths'],
+      $settings['relative'],
+      $settings['version']
+    );
+  }
   
-  $chart_libs = amcharts_get_chart_type_libs();
+  $chart_libs = amcharts_get_chart_type_libs( $settings['version'] );
+  var_dump($settings);
+  var_dump($chart_libs);
+  die();
   foreach ( $chart_libs as $chart_type => $libs ) {
     $settings['chart_types'][$chart_type] = array(
       'default_resources'   => '',
@@ -37,12 +48,13 @@ function amcharts_get_defaults( $load_resources = false ) {
       // moving this on on plugin activation or update so that resource list
       // is not requested every time
       'custom_resources'    => 0,
-      'default_html'        => amcharts_get_default( $chart_type, 'html' ),
-      'default_javascript'  => amcharts_get_default( $chart_type, 'javascript' )
+      'default_html'        => amcharts_get_default( $chart_type, 'html', $settings['version'] ),
+      'default_javascript'  => amcharts_get_default( $chart_type, 'javascript', $settings['version'] )
     );
 
-    if ( $load_resources )
+    if ( $load_resources ) {
       $settings['chart_types'][$chart_type]['default_resources'] = amcharts_get_resources( $libs, $settings['resources'] );
+    }
   }
   
   return $settings;
@@ -58,12 +70,17 @@ function amcharts_settings_show() {
   wp_enqueue_style( 'jquery-ui-smoothness', plugins_url( 'lib/jquery-ui/css/smoothness/jquery-ui-1.10.4.custom.min.css', AMCHARTS_BASE ), array(), AMCHARTS_VERSION );
   wp_enqueue_script( 'jquery-ui-tabs' );
   
-  // get chart type settings
-  $chart_types = amcharts_get_chart_types();
-  $chart_type_libs = amcharts_get_chart_type_libs();
-  
   // load current settings
   $settings = get_option( 'amcharts_options', amcharts_get_defaults() );
+
+  // handle situation where version is not (yet) set
+  if ( !isset( $settings['version'] ) ) {
+    $settings['version'] = '3';
+  }
+  
+  // get chart type settings
+  $chart_types = amcharts_get_chart_types( $settings['version'] );
+  $chart_type_libs = amcharts_get_chart_type_libs( $settings['version'] );
   
   // process save
   $errors = array();
@@ -74,7 +91,9 @@ function amcharts_settings_show() {
     
     // get submited data
     $settings['relative']           = isset( $_POST['relative'] ) && '1' == $_POST['relative'] ? '1' : '0';
-    $settings['own']                = isset( $_POST['own'] ) && '1' == $_POST['own'] ? '1' : '0';
+    if ( $settings['version'] == '3' ) {
+      $settings['own']                = isset( $_POST['own'] ) && '1' == $_POST['own'] ? '1' : '0';
+    }
     $settings['wrap']               = isset( $_POST['wrap'] ) && '1' == $_POST['wrap'] ? '1' : '0';
     $settings['location']           = isset( $_POST['location'] ) ? trim( $_POST['location'] ) : 'remote';
     $settings['paths']              = isset( $_POST['paths'] ) ? trim( $_POST['paths'] ) : '';
@@ -94,10 +113,49 @@ function amcharts_settings_show() {
     if ( !get_magic_quotes_gpc() ) {
       $settings = stripslashes_deep( $settings );
     }
+
+    // handle version switch
+    if (isset( $_POST['switch_version'] ) && $_POST['target_version'] != $settings['version']) {
+      $settings['version'] = $_POST['target_version'] == '3' ? '3' : '4';
+
+      // load types again (version changed)
+      $chart_types = amcharts_get_chart_types( $settings['version'] );
+      $chart_type_libs = amcharts_get_chart_type_libs( $settings['version'] );
+
+      // need to load available resources, too
+      $settings['resources'] = amcharts_get_available_resources(
+        $settings['location'],
+        $settings['paths'],
+        $settings['relative'],
+        $settings['version']
+      );
+      
+      // set up defaults as well
+      foreach ( $chart_type_libs as $chart_type => $libs ) {
+        $settings['chart_types'][$chart_type] = array(
+          'default_resources'   => amcharts_get_resources( $libs, $settings['resources'] ),
+          // moving this on on plugin activation or update so that resource list
+          // is not requested every time
+          'custom_resources'    => 0,
+          'default_html'        => amcharts_get_default( $chart_type, 'html', $settings['version'] ),
+          'default_javascript'  => amcharts_get_default( $chart_type, 'javascript', $settings['version'] )
+        );
+
+        if ( $load_resources ) {
+          $settings['chart_types'][$chart_type]['default_resources'] = amcharts_get_resources( $libs, $settings['resources'] );
+        }
+      }
+
+    }
     
     // refresh built-in resources
     if ( ( $prev_location != $settings['location'] ) || ( isset( $_POST['refresh'] ) && '1' == $_POST['refresh'] ) ) {
-      $settings['resources'] = amcharts_get_available_resources( $settings['location'], $settings['paths'], $settings['relative'] );
+      $settings['resources'] = amcharts_get_available_resources(
+        $settings['location'],
+        $settings['paths'],
+        $settings['relative'],
+        $settings['version']
+      );
       
       reset( $chart_type_libs );
       foreach ( $chart_type_libs as $chart_type => $libs ) {
@@ -124,12 +182,51 @@ function amcharts_settings_show() {
   <div class="message updated"><?php echo wpautop($success); ?></div>
   <?php endif; ?>
   
-  <h2 class="title"><?php echo __( 'Resources', 'amcharts' ); ?></h2>
-  
   <form method="post" action="">
-    
+  
+  <h2 class="title"><?php echo __( 'amCharts', 'amcharts' ); ?></h2>
   <table class="form-table">
     <tbody>
+      <tr valign="top">
+        <th scope="row">
+          <?php _e( 'Version', 'amcharts' ); ?>
+        </th>
+        <td>
+          <fieldset>
+            <p>
+              <strong>amCharts <?php echo $settings['version']; ?></strong>
+            </p>
+            <p class="description"><?php _e( 'This section specifies which major version of amCharts library is used.', 'amcharts' ); ?></p>
+          </fieldset>
+        </td>
+      </tr>
+      <tr valign="top">
+        <th scope="row">
+          <?php _e( 'Switch Version', 'amcharts' ); ?>
+        </th>
+        <td>
+          <fieldset>
+            <p>
+              <input type="submit" name="switch_version" class="button" id="amcharts-switch-version" value="<?php echo esc_attr( __( 'Switch to', 'amcharts' ) ); ?> amCharts <?php echo $settings['version'] == '4' ? '3' : '4'; ?>" onclick="return confirm('<?php echo esc_js( __( 'Are you sure? This operation cannot be undone.', 'amcharts' ) ); ?>');" />
+              <input type="hidden" name="target_version" value="<?php echo $settings['version'] == '4' ? '3' : '4'; ?>" />
+            </p>
+            <p>&nbsp;</p>
+            <p class="description"><?php _e( 'The following will happen when you click the button above:', 'amcharts' ); ?></p>
+            <p class="description">- <?php _e( 'Resource list below will be updated automatically (custom reseources will remain intact).', 'amcharts' ); ?></p>
+            <p class="description">- <?php _e( 'Defaults will be replaced with the ones appropriate for the target version.', 'amcharts' ); ?></p>
+            <p class="description">- <?php _e( 'The chart type list will slightly change as per target version capabilities.', 'amcharts' ); ?></p>
+            <p class="description"><strong>- <?php _e( 'Charts created previously will not be affected.', 'amcharts' ); ?></strong></p>
+          </fieldset>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  
+    
+  <h2 class="title"><?php echo __( 'Resources', 'amcharts' ); ?></h2>
+  <table class="form-table">
+    <tbody>
+
       <tr valign="top">
         <th scope="row"><?php _e( 'Resource Storage', 'amcharts' ); ?></th>
         <td>
@@ -174,7 +271,8 @@ function amcharts_settings_show() {
           </fieldset>
         </td>
       </tr>
-
+      
+      <?php if ( $settings['version'] == '3' ) { ?>
       <tr valign="top" id="amcharts-live-editor-group" <?php
         echo 'remote' == $settings['location'] ? 'style="display: none;"' : '';
       ?>>
@@ -194,6 +292,7 @@ function amcharts_settings_show() {
           </fieldset>
         </td>
       </tr>
+      <?php } ?>
 
       <tr valign="top">
         <th scope="row"><?php _e( 'Error Handling', 'amcharts' ); ?></th>
@@ -291,7 +390,7 @@ function amcharts_settings_show() {
             <?php
             reset( $chart_types );
             foreach ( $chart_types as $chart_type => $chart_type_name ) {
-              
+
               // let the user edit resource list?
               $edit = $settings['chart_types'][$chart_type]['custom_resources'] ? true : false;
               
@@ -387,11 +486,12 @@ function amcharts_settings_show() {
 add_action( 'wp_ajax_amcharts_find_me', 'amcharts_find_me' );
 
 function amcharts_find_me () {
-  amcharts_find_me_branch( '' );
+  $settings = get_option( 'amcharts_options', amcharts_get_defaults() );
+  amcharts_find_me_branch( '', false, isset( $settings['version'] ) ? $settings['version'] : '4' );
   die();
 }
 
-function amcharts_find_me_branch ( $path, $paths = false ) {
+function amcharts_find_me_branch ( $path, $paths = false, $version = '3' ) {
   //echo $path . "\n";
   if ( false === $paths )
     $paths = array();
@@ -401,7 +501,7 @@ function amcharts_find_me_branch ( $path, $paths = false ) {
     if ( in_array( $file, array( '.', '..' ) ) ) {
       continue;
     }
-    elseif ( in_array( $file, array( 'amcharts.js', 'ammap.js' ) ) ) {
+    elseif ( in_array( $file, array( 'core.js' ) ) && file_exists( $dir . 'charts.js' ) ) {
       if ( sizeof( $paths ) )
         echo "\n";
       

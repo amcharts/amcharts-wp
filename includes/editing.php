@@ -296,7 +296,7 @@ function amcharts_admin_head () {
 			'are_you_sure': '<?php echo esc_js( __( 'Are you sure? This operation cannot be undone.', 'amcharts' ) ); ?>'
 		};
 		
-		var amcharts_chart_types = <?php echo json_encode( amcharts_get_chart_types() ); ?>
+		var amcharts_chart_types = <?php echo json_encode( amcharts_get_chart_types( amcharts_get_lib_version() ) ); ?>
 	</script>
 	<?php
 }
