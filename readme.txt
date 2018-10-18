@@ -37,9 +37,13 @@ If you choose to install in manually, make sure all the files from the downloade
 
 == Frequently Asked Questions ==
 
-= Does this plugin work with the free/commercial versions of amCharts libraries =
+= Does this plugin work with the free/commercial versions of amCharts libraries? =
 
 Yes. You can either set the plugin to use publically available libraries loaded from www.amcharts.com or from your local server.
+
+= Which version of amCharts library does the plugin use?
+
+Plugin will use amCharts 4 when installed anew. You are able to switch between versions in plugin's settings.
 
 = Will I be able to visually edit settings and data? =
 
