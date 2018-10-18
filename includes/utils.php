@@ -257,8 +257,11 @@ function amcharts_get_resource_files_deep( $dir, $path = '' ) {
   return $res;
 }
 
+/**
+ * Returns version of the amCharts library in use.
+ */
 function amcharts_get_lib_version() {
-  $settings = get_option( 'amcharts_options', amcharts_get_defaults() );
+  $settings = get_option( 'amcharts_options', array() );
 
   // handle situation where version is not (yet) set
   if ( !isset( $settings['version'] ) ) {

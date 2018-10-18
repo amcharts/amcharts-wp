@@ -38,9 +38,7 @@ function amcharts_get_defaults( $load_resources = false ) {
   }
   
   $chart_libs = amcharts_get_chart_type_libs( $settings['version'] );
-  var_dump($settings);
-  var_dump($chart_libs);
-  die();
+
   foreach ( $chart_libs as $chart_type => $libs ) {
     $settings['chart_types'][$chart_type] = array(
       'default_resources'   => '',
