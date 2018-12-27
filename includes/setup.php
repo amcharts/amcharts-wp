@@ -218,7 +218,9 @@ $amcharts_current_instance = 0;
 
 function amcharts_enqueue_javascript ( $js ) {
   global $amcharts_scripts;
-  $amcharts_scripts[] = $js;
+  if ( !in_array( $js, $amcharts_scripts ) ) {
+    $amcharts_scripts[] = $js;
+  }
 }
 
 /**
