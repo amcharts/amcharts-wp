@@ -155,8 +155,9 @@ function amcharts_shortcode ( $atts ) {
   // apply additional filters
   $pass = apply_filters( 'amcharts_shortcode_data', $pass, $atts );
   
-  if ( sizeof( $pass ) )
-    $javascript = "AmCharts.wpChartData = " . json_encode( $pass ) . ";\n" . $javascript;
+  if ( sizeof( $pass ) ) {
+    $javascript = "if (typeof AmCharts == 'undefined') AmCharts = {};\nAmCharts.wpChartData = " . json_encode( $pass ) . ";\n" . $javascript;
+  }
 
   // wrap with exception code if necessary
   $settings = get_option( 'amcharts_options' );
