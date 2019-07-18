@@ -170,7 +170,6 @@ function amcharts_settings_show() {
   }
   ?>
   
-  <?php screen_icon(); ?>
   <h1><?php echo __( 'amCharts: Settings'); ?></h1>
   
   <?php if ( count($errors) > 0 ) : ?>

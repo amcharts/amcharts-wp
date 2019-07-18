@@ -190,17 +190,19 @@ if ( is_admin() )
   add_action( 'init', 'amcharts_enqueue_scripts' );
 
 function amcharts_enqueue_scripts() {
-  // own
-  wp_enqueue_style( 'amcharts-admin', plugins_url( 'lib/amcharts_admin.css', AMCHARTS_BASE ), array(), AMCHARTS_VERSION );
-  wp_enqueue_script( 'amcharts-admin', plugins_url( 'lib/amcharts_admin.js', AMCHARTS_BASE ), array( 'jquery' ), AMCHARTS_VERSION );
+  if( (isset( $_REQUEST['post_type'] ) && $_REQUEST['post_type'] === 'amchart') || ( isset( $_REQUEST['page'] ) && $_REQUEST['page'] === 'amcharts' ) || ( isset( $_REQUEST['post'] ) && get_post_type( $_REQUEST['post'] ) == 'amchart' ) ) {
+    // own
+    wp_enqueue_style( 'amcharts-admin', plugins_url( 'lib/amcharts_admin.css', AMCHARTS_BASE ), array(), AMCHARTS_VERSION );
+    wp_enqueue_script( 'amcharts-admin', plugins_url( 'lib/amcharts_admin.js', AMCHARTS_BASE ), array( 'jquery' ), AMCHARTS_VERSION );
   
-  // codemirror
-  wp_enqueue_style( 'codemirror', plugins_url( 'lib/codemirror/codemirror.css', AMCHARTS_BASE ), array(), AMCHARTS_VERSION );
-  wp_enqueue_script( 'codemirror', plugins_url( 'lib/codemirror/codemirror.js', AMCHARTS_BASE ), array( 'amcharts-admin' ), AMCHARTS_VERSION );
-  wp_enqueue_script( 'codemirror-javascript', plugins_url( 'lib/codemirror/mode/javascript/javascript.js', AMCHARTS_BASE ), array( 'codemirror' ), AMCHARTS_VERSION );
-  wp_enqueue_script( 'codemirror-css', plugins_url( 'lib/codemirror/mode/css/css.js', AMCHARTS_BASE ), array( 'codemirror' ), AMCHARTS_VERSION );
-  wp_enqueue_script( 'codemirror-xml', plugins_url( 'lib/codemirror/mode/xml/xml.js', AMCHARTS_BASE ), array( 'codemirror' ), AMCHARTS_VERSION );
-  wp_enqueue_script( 'codemirror-htmlmixed', plugins_url( 'lib/codemirror/mode/htmlmixed/htmlmixed.js', AMCHARTS_BASE ), array( 'codemirror', 'codemirror-css', 'codemirror-xml' ), AMCHARTS_VERSION );
+    // codemirror
+    wp_enqueue_style( 'codemirror', plugins_url( 'lib/codemirror/codemirror.css', AMCHARTS_BASE ), array(), AMCHARTS_VERSION );
+    wp_enqueue_script( 'codemirror', plugins_url( 'lib/codemirror/codemirror.js', AMCHARTS_BASE ), array( 'amcharts-admin' ), AMCHARTS_VERSION );
+    wp_enqueue_script( 'codemirror-javascript', plugins_url( 'lib/codemirror/mode/javascript/javascript.js', AMCHARTS_BASE ), array( 'codemirror' ), AMCHARTS_VERSION );
+    wp_enqueue_script( 'codemirror-css', plugins_url( 'lib/codemirror/mode/css/css.js', AMCHARTS_BASE ), array( 'codemirror' ), AMCHARTS_VERSION );
+    wp_enqueue_script( 'codemirror-xml', plugins_url( 'lib/codemirror/mode/xml/xml.js', AMCHARTS_BASE ), array( 'codemirror' ), AMCHARTS_VERSION );
+    wp_enqueue_script( 'codemirror-htmlmixed', plugins_url( 'lib/codemirror/mode/htmlmixed/htmlmixed.js', AMCHARTS_BASE ), array( 'codemirror', 'codemirror-css', 'codemirror-xml' ), AMCHARTS_VERSION );
+  }
 }
 
 
