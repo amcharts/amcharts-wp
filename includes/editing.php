@@ -357,3 +357,27 @@ function amcharts_get_posts() {
 	?></ul><?php
 	die();
 }
+
+/**
+ * Adds Gutenberg block.
+ */
+function amcharts_register_block_type() {
+
+	if ( ! function_exists( 'register_block_type' ) ) {
+		// Gutenberg is not active.
+		return;
+	}
+
+	wp_register_script(
+		'amcharts-block',
+		AMCHARTS_BASE_URL . '/lib/amcharts_block.js',
+		array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-editor' ),
+		AMCHARTS_VERSION
+	);
+
+	register_block_type( 'amcharts/amcharts-block', array(
+		'editor_script' => 'amcharts-block',
+	) );
+
+}
+add_action( 'init', 'amcharts_register_block_type' );
