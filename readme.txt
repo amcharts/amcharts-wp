@@ -3,7 +3,7 @@ Contributors: martynasma
 Tags: charts, maps, amcharts, ammap, javascript charts, javascript maps
 Requires at least: 3.0
 Tested up to: 5.7
-Stable tag: 1.2.3
+Stable tag: 1.2.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -135,6 +135,11 @@ Yup. It fully supports WPML. You can create language-specific versions of the ch
 7. The chart shortcodes are replaced with the actual charts when page renders.
 
 == Changelog ==
+
+= 1.2.4 =
+* Chart popup will now open faster since it uses built-in "thickbox" and in-line code rather than `<iframe>`.
+* Some PHP warnings has been fixed in debug mode.
+* Plugin now uses CodeMirror library bundled with WP if available.
 
 = 1.2.3 =
 * CodeMirror dependency is no longer included in all Admin pages, just the ones that are related to amCharts.
