@@ -233,8 +233,8 @@ function amcharts_settings_show() {
                 echo 'remote' == $settings['location'] ? ' checked="checked"' : '';
               ?> /> <?php _e( 'Resources are stored remotely ', 'amcharts' ); ?></label>
             </p>
-            <p class="description"><?php _e( 'The free versions of libraries will be loaded from www.amcharts.com. These are fully functional but will show a small branding link on charts or maps.', 'amcharts' ); ?></p>
-            <p class="description"><?php _e( 'Want a link-free version? <a href="http://www.amcharts.com/online-store/" target="_blank">Purchase a commercial version</a> and help the development of this product as well as increase your karma points in the process.', 'amcharts' ); ?></p>
+            <p class="description"><?php _e( 'Load libraries from amCharts CDN service. As per amCharts <a href="https://github.com/amcharts/amcharts4/blob/master/dist/script/LICENSE" target="_blank">free use requirements</a>, the libraries will show a small branding link on the charts.', 'amcharts' ); ?></p>
+            <p class="description"><?php _e( 'Commercial license holders can disable branding via code provided during purchase of such license.', 'amcharts' ); ?></p>
           </fieldset>
         </td>
       </tr>

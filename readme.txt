@@ -21,7 +21,6 @@ Related links:
 * [Free usage terms / license of the amCharts library](https://github.com/amcharts/amcharts4/blob/master/dist/script/LICENSE)
 * [amCharts privacy policy](https://www.amcharts.com/privacy-policy/)
 
-
 = What is it? =
 
 Ever tried getting JavaScript content into your Wordpress posts or pages? Yeah, that's impossible. WP strips down all
