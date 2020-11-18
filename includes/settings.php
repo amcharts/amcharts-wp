@@ -101,16 +101,16 @@ function amcharts_settings_show() {
     foreach ( $chart_types as $chart_type => $chart_type_name ) {
       $settings['chart_types'][$chart_type] = array(
         'default_resources'   => trim( $_POST['chart_types'][$chart_type]['default_resources'] ),
-        'custom_resources'    => (int) $_POST['chart_types'][$chart_type]['custom_resources'],
+        'custom_resources'    => isset( $_POST['chart_types'][$chart_type]['custom_resources'] ) ? (int) $_POST['chart_types'][$chart_type]['custom_resources'] : 0,
         'default_html'        => trim( $_POST['chart_types'][$chart_type]['default_html'] ),
         'default_javascript'  => trim( $_POST['chart_types'][$chart_type]['default_javascript'] )
       );
     }
     
     // strip slashes if any
-    if ( !get_magic_quotes_gpc() ) {
-      $settings = stripslashes_deep( $settings );
-    }
+    //if ( !get_magic_quotes_gpc() ) {
+    $settings = stripslashes_deep( $settings );
+    //}
 
     // handle version switch
     if (isset( $_POST['switch_version'] ) && $_POST['target_version'] != $settings['version']) {
@@ -139,9 +139,9 @@ function amcharts_settings_show() {
           'default_javascript'  => amcharts_get_default( $chart_type, 'javascript', $settings['version'] )
         );
 
-        if ( $load_resources ) {
-          $settings['chart_types'][$chart_type]['default_resources'] = amcharts_get_resources( $libs, $settings['resources'] );
-        }
+        //if ( $load_resources ) {
+        $settings['chart_types'][$chart_type]['default_resources'] = amcharts_get_resources( $libs, $settings['resources'] );
+        //}
       }
 
     }
