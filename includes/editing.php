@@ -288,17 +288,130 @@ function amcharts_tinymce_plugin( $plugin_array ) {
 
 add_action( 'admin_head', 'amcharts_admin_head' );
 function amcharts_admin_head () {
-	?>
-	<script>
-		var amcharts_prompts = {
-			'insert_chart': '<?php echo esc_js( __( 'Insert chart or map', 'amcharts' ) ); ?>',
-			'select_chart': '<?php echo esc_js( __( 'Select a chart or map to insert', 'amcharts' ) ); ?>',
-			'are_you_sure': '<?php echo esc_js( __( 'Are you sure? This operation cannot be undone.', 'amcharts' ) ); ?>'
-		};
-		
-		var amcharts_chart_types = <?php echo json_encode( amcharts_get_chart_types( amcharts_get_lib_version() ) ); ?>
-	</script>
-	<?php
+	if ( isset( $_GET['action'] ) && $_GET['action'] == 'edit' ) {
+		add_thickbox();
+		wp_enqueue_style( 'amcharts-popup', plugins_url( 'lib/amcharts_popup.css', AMCHARTS_BASE ), array(), AMCHARTS_VERSION );
+		?>
+		<script>
+			var amcharts_prompts = {
+				'insert_chart': '<?php echo esc_js( __( 'Insert chart or map', 'amcharts' ) ); ?>',
+				'select_chart': '<?php echo esc_js( __( 'Select a chart or map to insert', 'amcharts' ) ); ?>',
+				'are_you_sure': '<?php echo esc_js( __( 'Are you sure? This operation cannot be undone.', 'amcharts' ) ); ?>'
+			};
+			
+			var amcharts_chart_types = <?php echo json_encode( amcharts_get_chart_types( amcharts_get_lib_version() ) ); ?>
+		</script>
+		<?php
+	}
+}
+
+add_action( 'admin_footer', 'amcharts_admin_footer' );
+function amcharts_admin_footer () {
+	if ( isset( $_GET['action'] ) && $_GET['action'] == 'edit' ) {
+		?>
+		<div id="amcharts-popup" style="display: none;">
+			<div class="amcharts-popup-content">
+				<div class="amcharts-tabs">
+					<ul>
+						<li><a href="#tabs-local" class="active"><?php _e( 'Local Charts', 'amcharts' ); ?></a></li>
+						<li><a href="#tabs-live"><?php _e( 'Live Editor', 'amcharts' ); ?></a></li>
+					</ul>
+				</div>
+				<div id="tabs-live" style="display: none;">
+					<p>
+						<input type="text" value="" id="live-editor-url" placeholder="<?php _e( 'Enter a URL to a chart created in Live Editor', 'amcharts' ); ?>" class="widefat" />
+					</p>
+					<p class="description"><?php _e( 'Once you publish the chart in Live Editor, copy and paste it\'s URL into field above.', 'amcharts' ); ?></p>
+					<p class="description"><?php _e( 'I.e.: https://live.amcharts.com/NmU2Z/', 'amcharts' ); ?></p>
+					<p>
+						<input type="text" value="" id="live-editor-width" placeholder="<?php _e( 'Width (default: 400px)', 'amcharts' ); ?>" class="fat" />
+						<input type="text" value="" id="live-editor-height" placeholder="<?php _e( 'Height (default: 300px)', 'amcharts' ); ?>" class="fat" />
+						<input type="button" id="live-editor-ok" value="<?php _e( 'Insert', 'amcharts' ); ?>" class="button button-primary" />
+					</p>
+					<p>
+						<input type="button" value="<?php _e( 'Open Live Editor', 'amcharts' ); ?>" onclick="window.open('https://live.amcharts.com/');" class="button" />
+						<span class="description"><?php _e( 'This will open Live Editor in a new window', 'amcharts' ); ?></span>
+					</p>
+
+				</div>
+				<div id="tabs-local">
+					<input type="text" value="" id="post-search" placeholder="<?php _e( 'Start typing to search', 'amcharts' ); ?>" class="widefat" />
+					<div id="results"></div>
+				</div>
+			</div>
+		</div>
+		<script>
+			jQuery( function( $ ) {
+				amchartsUpdateSearchResults();
+				$( '#results').on( 'click', '.post', function () {
+					window.parent.tinyMCE.activeEditor.execCommand( 'mceInsertContent', false, '[amcharts id="' + this.id + '"]' );
+					//parent.tinyMCE.activeEditor.windowManager.close( window );
+					tb_remove();
+				} );
+				$( '#post-search' ).on('keyup change', function () {
+					amchartsUpdateSearchResults();
+				});
+				var currentTab = 'tabs-local';
+				$( '.amcharts-tabs a').on( 'click', function (e) {
+					var target = this.href.split('#')[1];
+					e.preventDefault();
+					if ( target == currentTab )
+						return;
+					$( '#' + currentTab ).hide();
+					$( '#' + target ).show();
+					$( '.amcharts-tabs a' ).removeClass( 'active' );
+					$( this ).addClass( 'active' );
+					currentTab = target;
+				});
+				$('#live-editor-ok').on('click', function () {
+					var url = $('#live-editor-url').val();
+					if ( '' == url ) {
+						$( '#live-editor-url' ).addClass( 'error' ).prop( 'placeholder', '<?php echo esc_js( __( 'Please enter a chart URL', 'amcharts' ) ); ?>' );
+						return;
+					}
+					var embed = '[embed';
+					var width = $( '#live-editor-width' ).val();
+					var height = $( '#live-editor-height' ).val();
+					if ( '' != width ) embed += ' width="' + width + '"';
+					if ( '' != height ) embed += ' height="' + height + '"';
+					<?php
+					// use our own libraries?
+					$settings = get_option( 'amcharts_options', array( 'own' => 0, 'paths' => '' ) );
+					if ( '1' == $settings['own'] ) {
+						$paths = amcharts_split_libs( $settings['paths'] );
+						$path = array_shift( $paths );
+						$path = home_url( $path );
+						?>
+						embed += ' src="<?php echo $path; ?>" tkn="replaceDefault"';
+						<?php
+					}
+					?>
+					embed += ']' + url + '[/embed]'
+					window.parent.tinyMCE.activeEditor.execCommand( 'mceInsertContent', false, embed );
+					//parent.tinyMCE.activeEditor.windowManager.close( window );
+					tb_remove();
+					console.log("closing");
+				});
+				$( '#live-editor-url' ).on('keyup change', function () {
+					$(this).removeClass( 'error' );
+				});
+			} );
+			function amchartsUpdateSearchResults () {
+				var query = jQuery( '#post-search' ).val();
+				var data = {
+					'action': 'amcharts_get_posts',
+					'query': query
+				};
+				<?php if ( isset( $_GET['l'] ) ) { ?>
+					data.language = '<?php echo esc_js( $_GET['l'] ); ?>';
+				<?php } ?>
+				jQuery.post(ajaxurl, data, function(response) {
+					jQuery('#results').html(response);
+				});
+			}
+		</script>
+		<?php
+	}
 }
 
 /**

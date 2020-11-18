@@ -1,0 +1,46 @@
+.amcharts-popup-content {
+  padding: 10px 0;
+}
+
+.amcharts-popup-content .post {
+  font-weight: bold;
+  cursor: pointer;
+  padding: 3px 6px;
+}
+
+.amcharts-popup-content .post:hover {
+  background-color: #eee;
+}
+
+.amcharts-popup-content .amcharts-tabs {
+  border-bottom: 2px solid #eee;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.amcharts-popup-content .amcharts-tabs ul, .amcharts-popup-content .amcharts-tabs li {
+  margin: 0;
+}
+
+.amcharts-popup-content .amcharts-tabs a {
+  float: left;
+  padding: 5px 15px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.amcharts-popup-content .amcharts-tabs a.active {
+  background: #eee;
+}
+
+.amcharts-popup-content #live-editor-width, #live-editor-height {
+  width: 35%;
+}
+
+.amcharts-popup-content #live-editor-url.error {
+  border: 1px solid #d00;
+}
+
+.amcharts-popup-content input {
+  font-size: 13px;
+}
