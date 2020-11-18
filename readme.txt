@@ -2,7 +2,7 @@
 Contributors: martynasma
 Tags: charts, maps, amcharts, ammap, javascript charts, javascript maps
 Requires at least: 3.0
-Tested up to: 5.5
+Tested up to: 5.6
 Stable tag: 1.2.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -10,6 +10,19 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Allows to easily add interactive charts and maps using amCharts libraries.
 
 == Description ==
+
+= Important disclaimer =
+
+This plugin loads JavaScript libraries from external amCharts CDN which is a free **service** provided by amCharts.
+
+amCharts provides their libraries completely free without any caps to functionality on a sole condition, that small contribution is automatically displayed on all chart produced by amCharts library. The contribution comes from amCharts libraries/service and is not added by this plugin.
+
+Related links:
+* [Free usage terms / license of the amCharts library](https://github.com/amcharts/amcharts4/blob/master/dist/script/LICENSE)
+* [amCharts privacy policy](https://www.amcharts.com/privacy-policy/)
+
+
+= What is it? =
 
 Ever tried getting JavaScript content into your Wordpress posts or pages? Yeah, that's impossible. WP strips down all
 the JavaScript.
