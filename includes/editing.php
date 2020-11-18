@@ -291,18 +291,18 @@ function amcharts_admin_head () {
 	if ( isset( $_GET['action'] ) && $_GET['action'] == 'edit' ) {
 		add_thickbox();
 		wp_enqueue_style( 'amcharts-popup', plugins_url( 'lib/amcharts_popup.css', AMCHARTS_BASE ), array(), AMCHARTS_VERSION );
-		?>
-		<script>
-			var amcharts_prompts = {
-				'insert_chart': '<?php echo esc_js( __( 'Insert chart or map', 'amcharts' ) ); ?>',
-				'select_chart': '<?php echo esc_js( __( 'Select a chart or map to insert', 'amcharts' ) ); ?>',
-				'are_you_sure': '<?php echo esc_js( __( 'Are you sure? This operation cannot be undone.', 'amcharts' ) ); ?>'
-			};
-			
-			var amcharts_chart_types = <?php echo json_encode( amcharts_get_chart_types( amcharts_get_lib_version() ) ); ?>
-		</script>
-		<?php
 	}
+	?>
+	<script>
+		var amcharts_prompts = {
+			'insert_chart': '<?php echo esc_js( __( 'Insert chart or map', 'amcharts' ) ); ?>',
+			'select_chart': '<?php echo esc_js( __( 'Select a chart or map to insert', 'amcharts' ) ); ?>',
+			'are_you_sure': '<?php echo esc_js( __( 'Are you sure? This operation cannot be undone.', 'amcharts' ) ); ?>'
+		};
+		
+		var amcharts_chart_types = <?php echo json_encode( amcharts_get_chart_types( amcharts_get_lib_version() ) ); ?>
+	</script>
+	<?php
 }
 
 add_action( 'admin_footer', 'amcharts_admin_footer' );
