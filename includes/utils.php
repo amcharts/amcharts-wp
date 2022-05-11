@@ -11,7 +11,29 @@ function amcharts_is_new_post() {
  * Returns the list of available chart types
  */
 function amcharts_get_chart_types($version = '3') {
-  if ( $version == '4' ) {
+  if ( $version == '5' ) {
+    return array(
+      'xy'            => __( 'XY', 'amcharts' ),
+      'pie'           => __( 'Pie', 'amcharts' ),
+      'chord'         => __( 'Chord', 'amcharts' ),
+      'forcedirected' => __( 'Force-Directed', 'amcharts' ),
+      'funnel'        => __( 'Funnel', 'amcharts' ),
+      'gauge'         => __( 'Gauge', 'amcharts' ),
+      'map'           => __( 'Map', 'amcharts' ),
+      'pack'          => __( 'Pack', 'amcharts' ),
+      'partition'     => __( 'Partition', 'amcharts' ),
+      'pyramid'       => __( 'Pyramid', 'amcharts' ),
+      'radar'         => __( 'Radar', 'amcharts' ),
+      'sankey'        => __( 'Sankey', 'amcharts' ),
+      'stock'         => __( 'Stock', 'amcharts' ),
+      'sunburst'      => __( 'Sunburst', 'amcharts' ),
+      'tree'          => __( 'Tree', 'amcharts' ),
+      'treemap'       => __( 'Treemap', 'amcharts' ),
+      'venn'          => __( 'Venn', 'amcharts' ),
+      'wordcloud'     => __( 'WordCloud', 'amcharts' ),
+    );
+  }
+  elseif ( $version == '4' ) {
     return array(
       'xy'      => __( 'XY', 'amcharts' ),
       'pie'     => __( 'Pie', 'amcharts' ),
@@ -41,7 +63,29 @@ function amcharts_get_chart_types($version = '3') {
  * Returns the list of the charts and their default depenecies
  */
 function amcharts_get_chart_type_libs($version = '3') {
-  if ( $version == '4' ) {
+  if ( $version == '5' ) {
+    return array(
+      'chord'         => array( 'index.js', 'flow.js', 'Animated.js' ),
+      'forcedirected' => array( 'index.js', 'hierarchy.js', 'Animated.js' ),
+      'funnel'        => array( 'index.js', 'percent.js', 'Animated.js' ),
+      'gauge'         => array( 'index.js', 'xy.js', 'radar.js', 'Animated.js' ),
+      'map'           => array( 'index.js', 'map.js', 'worldLow.js', 'Animated.js' ),
+      'pack'          => array( 'index.js', 'hierarchy.js', 'Animated.js' ),
+      'partition'     => array( 'index.js', 'hierarchy.js', 'Animated.js' ),
+      'pie'           => array( 'index.js', 'percent.js', 'Animated.js' ),
+      'pyramid'       => array( 'index.js', 'percent.js', 'Animated.js' ),
+      'radar'         => array( 'index.js', 'xy.js', 'radar.js', 'Animated.js' ),
+      'sankey'        => array( 'index.js', 'flow.js', 'Animated.js' ),
+      'stock'         => array( 'index.js', 'xy.js', 'stock.js', 'Animated.js' ),
+      'sunburst'      => array( 'index.js', 'hierarchy.js', 'Animated.js' ),
+      'tree'          => array( 'index.js', 'hierarchy.js', 'Animated.js' ),
+      'treemap'       => array( 'index.js', 'hierarchy.js', 'Animated.js' ),
+      'venn'          => array( 'index.js', 'venn.js', 'Animated.js' ),
+      'wordcloud'     => array( 'index.js', 'wc.js', 'Animated.js' ),
+      'xy'            => array( 'index.js', 'xy.js', 'Animated.js' )
+    );
+  }
+  elseif ( $version == '4' ) {
     return array(
       'xy'      => array( 'core.js', 'charts.js' ),
       'pie'     => array( 'core.js', 'charts.js' ),
@@ -136,11 +180,11 @@ function amcharts_get_available_resources( $type = 'remote', $paths = '', $relat
     // maps
     reset( $dirs );
     foreach ( $dirs as $path ) {
-      if ( $version == '4' ) {
-        $libs = array_merge( $libs, amcharts_get_resource_files( ABSPATH . $path . 'geodata/', home_url( $path . 'geodata/' ) ) );
+      if ( $version == '3') {
+        $libs = array_merge( $libs, amcharts_get_resource_files( ABSPATH . $path . 'maps/js/', home_url( $path . 'maps/js/' ) ) );
       }
       else {
-        $libs = array_merge( $libs, amcharts_get_resource_files( ABSPATH . $path . 'maps/js/', home_url( $path . 'maps/js/' ) ) );
+        $libs = array_merge( $libs, amcharts_get_resource_files( ABSPATH . $path . 'geodata/', home_url( $path . 'geodata/' ) ) );
       }
     }
 
@@ -171,7 +215,10 @@ function amcharts_get_available_resources( $type = 'remote', $paths = '', $relat
   else {
     // load from amcharts.com (fall back to local hardocded list if url wrappers are disabled in PHP)
     if ( !$res = @file_get_contents( 'http://www.amcharts.com/lib/' . $version . '/resources.php' ) ) {
-      if ( $version == '4' ) {
+      if ( $version == '5' ) {
+        $res = file_get_contents( AMCHARTS_DIR . '/defaults/5/resources.txt' );
+      }
+      elseif ( $version == '4' ) {
         $res = file_get_contents( AMCHARTS_DIR . '/defaults/4/resources.txt' );
       }
       else {
@@ -209,7 +256,10 @@ function amcharts_get_resources( $libs, $resources ) {
  */
 function amcharts_get_default ( $chart_type, $context, $version = '3' ) {
 
-  if ( $version == "4" ) {
+  if ( $version == "5" ) {
+    $path = AMCHARTS_DIR . '/defaults/5/' . $chart_type . '-' . $context . '.txt';
+  }
+  elseif ( $version == "4" ) {
     $path = AMCHARTS_DIR . '/defaults/4/' . $chart_type . '-' . $context . '.txt';
   }
   else {

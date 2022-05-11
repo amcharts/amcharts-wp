@@ -1,9 +1,10 @@
 === amCharts: Charts and Maps ===
 Contributors: martynasma
 Tags: charts, maps, amcharts, ammap, javascript charts, javascript maps
-Requires at least: 3.0
-Tested up to: 5.7
-Stable tag: 1.2.4
+Requires at least: 3.5
+Tested up to: 6.1
+Version: 1.4
+Stable tag: 1.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -55,7 +56,7 @@ Yes. You can either set the plugin to use publically available libraries loaded 
 
 = Which version of amCharts library does the plugin use?
 
-Plugin will use amCharts 4 when installed anew. You are able to switch between versions in plugin's settings.
+Plugin will use amCharts 5 when installed anew. You are able to switch between versions in plugin's settings.
 
 = Will I be able to visually edit settings and data? =
 
@@ -136,7 +137,11 @@ Yup. It fully supports WPML. You can create language-specific versions of the ch
 
 == Changelog ==
 
-= 1.2.4 =
+= 1.4 =
+* Tested up tp WP 6.1.
+* Added amCharts 5 support.
+
+= 1.3 =
 * Chart popup will now open faster since it uses built-in "thickbox" and in-line code rather than `<iframe>`.
 * Some PHP warnings has been fixed in debug mode.
 * Plugin now uses CodeMirror library bundled with WP if available.

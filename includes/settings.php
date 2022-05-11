@@ -14,7 +14,7 @@ function amcharts_admin_menu() {
 
 function amcharts_get_defaults( $load_resources = false ) {
   $settings = array(
-    'version'             => '4',
+    'version'             => '5',
     'location'            => 'remote',
     'relative'            => '0',
     'own'                 => '0',
@@ -114,7 +114,7 @@ function amcharts_settings_show() {
 
     // handle version switch
     if (isset( $_POST['switch_version'] ) && $_POST['target_version'] != $settings['version']) {
-      $settings['version'] = $_POST['target_version'] == '3' ? '3' : '4';
+      $settings['version'] = in_array( $_POST['target_version'], array('3', '4', '5') ) ? $_POST['target_version'] : '5';
 
       // load types again (version changed)
       $chart_types = amcharts_get_chart_types( $settings['version'] );
@@ -204,8 +204,16 @@ function amcharts_settings_show() {
         <td>
           <fieldset>
             <p>
-              <input type="submit" name="switch_version" class="button" id="amcharts-switch-version" value="<?php echo esc_attr( __( 'Switch to', 'amcharts' ) ); ?> amCharts <?php echo $settings['version'] == '4' ? '3' : '4'; ?>" onclick="return confirm('<?php echo esc_js( __( 'Are you sure? This operation cannot be undone.', 'amcharts' ) ); ?>');" />
-              <input type="hidden" name="target_version" value="<?php echo $settings['version'] == '4' ? '3' : '4'; ?>" />
+              <?php if ($settings['version'] != '5') { ?>
+                <input type="submit" name="switch_version" class="button switch_version" data-version="4" value="<?php echo esc_attr( __( 'Switch to', 'amcharts' ) ); ?> amCharts 5" onclick="return switchVersion('5');" />
+              <?php } ?>
+              <?php if ($settings['version'] != '4') { ?>
+                <input type="submit" name="switch_version" class="button switch_version" data-version="4" value="<?php echo esc_attr( __( 'Switch to', 'amcharts' ) ); ?> amCharts 4" onclick="return switchVersion('4');" />
+              <?php } ?>
+              <?php if ($settings['version'] != '3') { ?>
+              <input type="submit" name="switch_version" class="button switch_version" data-version="3" value="<?php echo esc_attr( __( 'Switch to', 'amcharts' ) ); ?> amCharts 3" onclick="return switchVersion('3');" />
+              <?php } ?>
+              <input type="hidden" id="amcharts-switch-version" name="target_version" value="<?php echo in_array( $settings['version'], array('3', '4', '5') ) ? $settings['version'] : '5'; ?>" />
             </p>
             <p>&nbsp;</p>
             <p class="description"><?php _e( 'The following will happen when you click the button above:', 'amcharts' ); ?></p>
@@ -214,6 +222,18 @@ function amcharts_settings_show() {
             <p class="description">- <?php _e( 'The chart type list will slightly change as per target version capabilities.', 'amcharts' ); ?></p>
             <p class="description"><strong>- <?php _e( 'Charts created previously will not be affected.', 'amcharts' ); ?></strong></p>
           </fieldset>
+          <script>
+            function switchVersion(version) {
+              var confirmation = confirm('<?php echo esc_js( __( 'Are you sure? This operation cannot be undone.', 'amcharts' ) ); ?>');
+              if (confirmation) {
+                jQuery("#amcharts-switch-version").val(version);
+              }
+              return confirmation;
+            }
+            // jQuery(".switch_version").on("click", function(ev) {
+            //   console.log(jQuery(ev.target).data("version"));
+            // })
+          </script>
         </td>
       </tr>
     </tbody>
@@ -484,7 +504,7 @@ add_action( 'wp_ajax_amcharts_find_me', 'amcharts_find_me' );
 
 function amcharts_find_me () {
   $settings = get_option( 'amcharts_options', amcharts_get_defaults() );
-  amcharts_find_me_branch( '', false, isset( $settings['version'] ) ? $settings['version'] : '4' );
+  amcharts_find_me_branch( '', false, isset( $settings['version'] ) ? $settings['version'] : '5' );
   die();
 }
 
