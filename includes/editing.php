@@ -255,7 +255,7 @@ function amcharts_manage_posts_custom_column ( $column_name, $post_id ) {
 	if ( 'amcharts_shortcode' == $column_name ) {
 		if ( $slug = get_post_meta( $post_id, '_amcharts_slug', true ) )
 			$post_id = $slug;
-		echo '[amcharts id="' . $post_id . '"]';
+		echo '[amcharts id="' . esc_textarea( $post_id ) . '"]';
 	}
 }
 
