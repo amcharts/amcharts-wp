@@ -2,7 +2,7 @@
 Contributors: martynasma
 Tags: charts, maps, amcharts, ammap, javascript charts, javascript maps
 Requires at least: 3.5
-Tested up to: 6.0.1
+Tested up to: 6.5
 Version: 1.4.1
 Stable tag: 1.4.1
 License: GPLv2 or later
