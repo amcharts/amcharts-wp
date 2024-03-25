@@ -3,8 +3,8 @@ Contributors: martynasma
 Tags: charts, maps, amcharts, ammap, javascript charts, javascript maps
 Requires at least: 3.5
 Tested up to: 6.5
-Version: 1.4.1
-Stable tag: 1.4.1
+Version: 1.4.2
+Stable tag: 1.4.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -136,6 +136,9 @@ Yup. It fully supports WPML. You can create language-specific versions of the ch
 7. The chart shortcodes are replaced with the actual charts when page renders.
 
 == Changelog ==
+
+= 1.4.2 =
+* Tested up to WP 6.5.
 
 = 1.4.1 =
 * Minor XSS vulnerability fixed.
