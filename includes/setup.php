@@ -416,8 +416,8 @@ function amcharts_check_version () {
     // that any of the versions could have been active before.
     // ...
 
-    // 1.4.3 and down
-    if ( $version <= 10403 ) {
+    // 1.4.2 and down
+    if ( $version <= 10402 ) {
       // set default capability type
       $settings['capability_type'] = 'page';
     }
