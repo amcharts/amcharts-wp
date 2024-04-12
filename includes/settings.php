@@ -16,6 +16,7 @@ function amcharts_get_defaults( $load_resources = false ) {
   $settings = array(
     'version'             => '5',
     'location'            => 'remote',
+    'capability_type'     => 'page',
     'relative'            => '0',
     'own'                 => '0',
     'paths'               => '',
@@ -96,7 +97,8 @@ function amcharts_settings_show() {
     $settings['location']           = isset( $_POST['location'] ) ? trim( $_POST['location'] ) : 'remote';
     $settings['paths']              = isset( $_POST['paths'] ) ? trim( $_POST['paths'] ) : '';
     $settings['custom_resources']   = isset( $_POST['custom_resources'] ) ? trim( $_POST['custom_resources'] ) : '';
-    
+    $settings['capability_type']    = isset( $_POST['capability_type'] ) && $_POST['capability_type'] == 'post' ? 'post' : 'page';
+
     reset( $chart_types );
     foreach ( $chart_types as $chart_type => $chart_type_name ) {
       $settings['chart_types'][$chart_type] = array(
@@ -239,6 +241,38 @@ function amcharts_settings_show() {
     </tbody>
   </table>
   
+  <h2 class="title"><?php echo __( 'Permissions', 'amcharts' ); ?></h2>
+  <table class="form-table">
+    <tbody>
+
+      <tr valign="top">
+        <th scope="row"><?php _e( 'User Capabilities', 'amcharts' ); ?></th>
+        <td>
+          <fieldset>
+            <p>
+              <label><input type="radio" name="capability_type" value="page" id="amcharts-capability-type-page" <?php
+                echo 'page' == $settings['capability_type'] ? ' checked="checked"' : '';
+              ?> /> <?php _e( '"Page" - Only users who can create pages on this website (e.g. Administrator, Editor) will be able to create and edit charts.', 'amcharts' ); ?></label>
+            </p>
+          </fieldset>
+        </td>
+      </tr>
+
+      <tr valign="top">
+        <th scope="row"></th>
+        <td>
+          <fieldset>
+            <p>
+              <label><input type="radio" name="capability_type" value="post" id="amcharts-capability-type-post" <?php
+                echo 'post' == $settings['capability_type'] ? ' checked="checked"' : '';
+              ?> /> <?php _e( '"Post" - All users who can access admin interface and create posts, can create charts, including Contributor role.', 'amcharts' ); ?></label>
+            </p>
+          </fieldset>
+        </td>
+      </tr>
+
+    </tbody>
+  </table>
     
   <h2 class="title"><?php echo __( 'Resources', 'amcharts' ); ?></h2>
   <table class="form-table">

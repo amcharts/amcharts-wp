@@ -11,6 +11,13 @@ function amcharts_register_cpt() {
   // amchart CPT
   // --------------------------------------------------------------------------
   
+  // Determine capability_type for the CPT
+  $settings = get_option( 'amcharts_options', array() );
+  $capability_type = $settings[ 'capability_type' ];
+  if ( empty($capability_type) ) {
+    $capability_type = 'page';
+  }
+  
   $labels = array( 
     'name'                => __( 'Charts &amp; Maps', 'amcharts' ),
     'singular_name'       => __( 'Chart or Map', 'amcharts' ),
@@ -40,7 +47,7 @@ function amcharts_register_cpt() {
     'has_archive'         => false,
     'query_var'           => false,
     'can_export'          => true,
-    'capability_type'     => 'post'
+    'capability_type'     => $capability_type
   );
 
   register_post_type( 'amchart', $args );
@@ -408,6 +415,12 @@ function amcharts_check_version () {
     // so any updates past this point will have to check and take into account
     // that any of the versions could have been active before.
     // ...
+
+    // 1.4.3 and down
+    if ( $version <= 10403 ) {
+      // set default capability type
+      $settings['capability_type'] = 'page';
+    }
 
     update_option( 'amcharts_options', $settings );
 
