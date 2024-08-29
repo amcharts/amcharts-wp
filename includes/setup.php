@@ -12,13 +12,8 @@ function amcharts_register_cpt() {
   // --------------------------------------------------------------------------
   
   // Determine capability_type for the CPT
-  $settings = get_option( 'amcharts_options', array(
-    'capability_type' => 'page'
-  ) );
-  $capability_type = $settings[ 'capability_type' ];
-  if ( empty($capability_type) ) {
-    $capability_type = 'page';
-  }
+  $settings = get_option( 'amcharts_options', array() );
+  $capability_type = isset( $settings[ 'capability_type' ] ) ? $settings[ 'capability_type' ] : 'page';
   
   $labels = array( 
     'name'                => __( 'Charts &amp; Maps', 'amcharts' ),

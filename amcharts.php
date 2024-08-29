@@ -16,7 +16,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: amcharts
 Domain Path: /langs
 
-Copyright 2013-2020 Martynas Majeris (email : martynas@amcharts.com)
+Copyright 2013-2024 Martynas Majeris (email : martynas@amcharts.com)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License, version 2, as 
