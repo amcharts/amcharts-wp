@@ -1,16 +1,16 @@
 <?php
 /**
  * @package amcharts
- * @version 1.4.4
+ * @version 1.4.5
  */
 /*
 Plugin Name: amCharts: Charts and Maps
 Description: Use this plugin to easily add interactive charts and maps using amChart's JavaScript Charts and JavaScript Maps products
 Author: amCharts
 Requires at least: 3.5
-Tested up to: 6.6.1
-Version: 1.4.4
-Stable tag: 1.4.4
+Tested up to: 6.6.2
+Version: 1.4.5
+Stable tag: 1.4.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: amcharts
@@ -33,7 +33,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
 // defaults
-define( 'AMCHARTS_VERSION', '1.4.4' );
+define( 'AMCHARTS_VERSION', '1.4.5' );
 define( 'AMCHARTS_BASE', __FILE__ );
 define( 'AMCHARTS_DIR', plugin_dir_path( __FILE__ ) );
 define( 'AMCHARTS_BASE_URL', plugins_url( '', __FILE__ ) );

@@ -284,7 +284,7 @@ function amcharts_wp_footer () {
 add_filter( 'template_include', 'amcharts_preview_template', 99 );
 function amcharts_preview_template( $template ) {
   
-  if ( isset( $_GET['amcharts_preview'] ) )
+  if ( isset( $_GET['amcharts_preview'] ) && wp_verify_nonce( $_GET['nonce'], AMCHARTS_NONCE ))
     $template = AMCHARTS_DIR . '/includes/preview.php';
 
   return $template;

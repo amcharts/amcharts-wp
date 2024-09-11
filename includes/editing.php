@@ -186,6 +186,9 @@ function amcharts_misc_box ( $post ) {
 	// nonce field
 	wp_nonce_field( AMCHARTS_NONCE, 'amcharts_nonce' );
 	
+	// get wp nonce
+	$preview_nonce = wp_create_nonce( AMCHARTS_NONCE );
+
 	// new?
 	if ( amcharts_is_new_post() ) {
 		$slug = amcharts_generate_slug( empty( $_GET['chart_type'] ) ? '' : $_GET['chart_type'] );
@@ -205,7 +208,7 @@ function amcharts_misc_box ( $post ) {
 		<a class="button" id="amcharts-preview"><?php _e( 'Preview chart or map', 'amcharts' ); ?></a>
 	</div>
 	<script>
-		var amcharts_preview_url = '<?php echo esc_js( home_url( '?amcharts_preview=1' ) ); ?>';
+		var amcharts_preview_url = '<?php echo str_replace( '&amp;', '&', esc_js( home_url( '?amcharts_preview=1&nonce=' . urlencode( $preview_nonce ) ) ) ); ?>';
 	</script>
 	
 	<?php
