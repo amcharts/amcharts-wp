@@ -10,12 +10,12 @@ function amcharts_register_cpt() {
   // --------------------------------------------------------------------------
   // amchart CPT
   // --------------------------------------------------------------------------
-  
+
   // Determine capability_type for the CPT
   $settings = get_option( 'amcharts_options', array() );
   $capability_type = isset( $settings[ 'capability_type' ] ) ? $settings[ 'capability_type' ] : 'page';
-  
-  $labels = array( 
+
+  $labels = array(
     'name'                => __( 'Charts &amp; Maps', 'amcharts' ),
     'singular_name'       => __( 'Chart or Map', 'amcharts' ),
     'add_new'             => __( 'Add New', 'amcharts' ),
@@ -29,7 +29,7 @@ function amcharts_register_cpt() {
     'menu_name'           => __( 'Charts &amp; Maps', 'amcharts' ),
   );
 
-  $args = array( 
+  $args = array(
     'labels'              => $labels,
     'menu_icon'           => 'dashicons-chart-pie',
     'hierarchical'        => false,
@@ -48,7 +48,7 @@ function amcharts_register_cpt() {
   );
 
   register_post_type( 'amchart', $args );
-  
+
 }
 
 /**
@@ -57,7 +57,7 @@ function amcharts_register_cpt() {
 
 add_action( 'plugins_loaded', 'amcharts_plugins_loaded' );
 function amcharts_plugins_loaded() {
-  load_plugin_textdomain( 'amcharts', false, dirname( plugin_basename( AMCHARTS_BASE ) ) . '/langs/' ); 
+  load_plugin_textdomain( 'amcharts', false, dirname( plugin_basename( AMCHARTS_BASE ) ) . '/langs/' );
 }
 
 /**
@@ -76,19 +76,19 @@ function amcharts_insert ( $chart_id ) {
 
 function amcharts_get ( $chart_id ) {
   $chart = new stdClass();
-  
+
   if ( ! $chart_post = get_post( $chart_id ) )
     return false;
 
   // increment instance
-  amcharts_increment_instance();  
+  amcharts_increment_instance();
 
   $chart->title = $chart_post->post_title;
   $chart->post = &$chart_post;
   $chart->resources = get_post_meta( $chart_id, '_amcharts_resources', true );
   $chart->html = amcharts_parse_code( get_post_meta( $chart_id, '_amcharts_html', true ) );
   $chart->javascript = amcharts_parse_code( get_post_meta( $chart_id, '_amcharts_javascript', true ) );
-  
+
   return $chart;
 }
 
@@ -99,11 +99,11 @@ function amcharts_get ( $chart_id ) {
 
 add_shortcode( 'amcharts' , 'amcharts_shortcode' );
 function amcharts_shortcode ( $atts ) {
-  
+
   extract( shortcode_atts( array(
     'id' => ''
   ), $atts ) );
-  
+
   // try loading by slug first
   if ( $chart = get_posts( array(
       'post_type'         => 'amchart',
@@ -135,10 +135,10 @@ function amcharts_shortcode ( $atts ) {
   }
   else if ( !$chart = get_post( $id ) )
     return '';
-  
+
   // increment instance
   amcharts_increment_instance();
-  
+
   // get meta
   $resources  = get_post_meta( $id, '_amcharts_resources', true );
   $html       = amcharts_parse_code( get_post_meta( $id, '_amcharts_html', true ) );
@@ -158,7 +158,7 @@ function amcharts_shortcode ( $atts ) {
 
   // apply additional filters
   $pass = apply_filters( 'amcharts_shortcode_data', $pass, $atts );
-  
+
   if ( sizeof( $pass ) ) {
     $javascript = "if (typeof AmCharts == 'undefined') AmCharts = {};\nAmCharts.wpChartData = " . json_encode( $pass ) . ";\n" . $javascript;
   }
@@ -167,7 +167,7 @@ function amcharts_shortcode ( $atts ) {
   $settings = get_option( 'amcharts_options' );
   if ( isset( $settings['wrap'] ) && '1' == $settings['wrap'] )
     $javascript = "try {\n" . $javascript . "\n}\ncatch( err ) { console.log( err ); }";
-  
+
   // enqueue resources
   $libs = amcharts_split_libs( apply_filters( 'amcharts_shortcode_resources', $resources, $atts ) );
   $libs = apply_filters( 'amcharts_shortcode_libs', $libs, $atts );
@@ -177,7 +177,7 @@ function amcharts_shortcode ( $atts ) {
     else
       wp_enqueue_script( 'amcharts-external-' . md5( basename( $lib ) ), $lib, array(), AMCHARTS_VERSION, true );
   }
-  
+
   // enqueue JavaScript part
   amcharts_enqueue_javascript( apply_filters( 'amcharts_shortcode_javascript', $javascript, $atts ) );
 
@@ -283,7 +283,7 @@ function amcharts_wp_footer () {
 
 add_filter( 'template_include', 'amcharts_preview_template', 99 );
 function amcharts_preview_template( $template ) {
-  
+
   if ( isset( $_GET['amcharts_preview'] ) && wp_verify_nonce( $_GET['nonce'], AMCHARTS_NONCE ))
     $template = AMCHARTS_DIR . '/includes/preview.php';
 
@@ -309,10 +309,10 @@ function amcharts_activate () {
   // security checks
   if ( ! current_user_can( 'activate_plugins' ) )
     return;
-  
+
   // set defaults
   $settings = amcharts_get_defaults( true );
-  
+
   // update options
   update_option( 'amcharts_options', $settings );
   update_option( 'amcharts_activated', true );
@@ -347,7 +347,7 @@ function amcharts_oembed_fetch_url( $provider, $url, $args ) {
  */
 add_action( 'plugins_loaded', 'amcharts_check_version' );
 function amcharts_check_version () {
-  
+
   $version = get_option( 'amcharts_version', '1.0.0' );
   if ( $version != AMCHARTS_VERSION && $version != '1.0.0' ) {
 
@@ -423,6 +423,6 @@ function amcharts_check_version () {
 
     // update the version
     update_option( 'amcharts_version', AMCHARTS_VERSION );
-    
+
   }
 }
